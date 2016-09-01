@@ -22,3 +22,30 @@ public enum EnvironmentType {
     case Staging
     case Production
 }
+
+/// Manages a Singleton Environment
+public class EnvironmentManager {
+    
+    public static let sharedManager: EnvironmentManager = EnvironmentManager()
+    
+    public var environment: EnvironmentType {
+        get {
+            return self.internalEnvironment
+        }
+    }
+    var internalEnvironment: EnvironmentType
+    
+    /**
+     Initializes the Singleton environment.
+     
+     - parameter environment: An EnvironmentType value.
+     */
+    public class func initializeEnvironment(environment: EnvironmentType = .Development) {
+        sharedManager.internalEnvironment = environment
+    }
+    
+    init(environment: EnvironmentType = .Development) {
+        self.internalEnvironment = environment
+    }
+    
+}
