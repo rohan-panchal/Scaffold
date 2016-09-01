@@ -6,24 +6,24 @@
 # To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
 #
 
-Pod::Spec.new do |s|
-    s.name             = 'Scaffold'
-    s.version          = '0.1.0'
-    s.summary          = 'Swift boilerplate, base level, structural, and convenience code for applications.'
+Pod::Spec.new do |scaffold|
+    scaffold.name             = 'Scaffold'
+    scaffold.version          = '0.1.0'
+    scaffold.summary          = 'Swift boilerplate, base level, structural, and convenience code for applications.'
     
-    s.description      = <<-DESC
+    scaffold.description      = <<-DESC
     Swift boilerplate, base level, structural, and convenience code for applications.
     
     Defines how views are constructed, persistence abstractions, generic controller structures etc.
     DESC
     
-    s.homepage         = 'https://github.com/rohan-panchal/Scaffold'
-    s.license          = { :type => 'MIT', :file => 'LICENSE' }
-    s.author           = { 'Rohan Panchal' => 'engineering@rohanpanchal.com' }
-    s.source           = { :git => 'https://github.com/rohan-panchal/Scaffold.git', :tag => s.version.to_s }
+    scaffold.homepage         = 'https://github.com/rohan-panchal/Scaffold'
+    scaffold.license          = { :type => 'MIT', :file => 'LICENSE' }
+    scaffold.author           = { 'Rohan Panchal' => 'engineering@rohanpanchal.com' }
+    scaffold.source           = { :git => 'https://github.com/rohan-panchal/Scaffold.git', :tag => scaffold.version.to_s }
     
-    s.ios.deployment_target = '8.0'
+    scaffold.ios.deployment_target = '8.0'
     
-    s.source_files = 'Scaffold/Classes/**/*'
+    scaffold.source_files = 'Scaffold/Classes/**/*'
     
 end
