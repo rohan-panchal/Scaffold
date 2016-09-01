@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Scaffold_Example' do
+  pod 'Scaffold', :path => '../'
+
+  target 'Scaffold_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
