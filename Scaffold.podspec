@@ -28,4 +28,10 @@ Pod::Spec.new do |scaffold|
         environment.source_files = 'Scaffold/Classes/Environment/*.{swift}'
     end
     
+    scaffold.subspec 'Application' do |application|
+        application.frameworks = 'UIKit'
+        
+        application.source_files = 'Scaffold/Classes/Application/*.{swift}'
+    end
+    
 end
