@@ -20,7 +20,7 @@ class EnvironmentTestCase: XCTestCase {
     func testEnvironmentManagerInitializeEnvironmentNonDefaultValue() {
         EnvironmentManager.initializeEnvironment(.Production)
         
-        XCTAssert(EnvironmentManager.sharedManager.environment == .Development)
+        XCTAssert(EnvironmentManager.sharedManager.environment == .Production)
     }
     
 }
