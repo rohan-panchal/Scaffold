@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0080A7EC1D78D3060043965C /* EnvironmentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080A7EB1D78D3060043965C /* EnvironmentTestCase.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
 		607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDC1AFB9204008FA782 /* Images.xcassets */; };
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
-		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		CA85949E038E1E6AD030CBC9 /* Pods_Scaffold_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2EEE917403A46756D01E04EF /* Pods_Scaffold_Example.framework */; };
 		EB28E28BD4EFE9405A7D0A66 /* Pods_Scaffold_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CF6DD4549690B0B5C91A420 /* Pods_Scaffold_Tests.framework */; };
 /* End PBXBuildFile section */
@@ -28,6 +28,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0080A7EB1D78D3060043965C /* EnvironmentTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentTestCase.swift; sourceTree = "<group>"; };
 		04243FF506B6505971B63DF6 /* Pods-Scaffold_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scaffold_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scaffold_Example/Pods-Scaffold_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2133A75D46197EDBD684FDB4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		24837BD423CF27A11AAB6F3F /* Pods-Scaffold_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scaffold_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scaffold_Example/Pods-Scaffold_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -43,7 +44,6 @@
 		607FACDF1AFB9204008FA782 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		607FACE51AFB9204008FA782 /* Scaffold_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Scaffold_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		A10780444C13C5F38E79EA65 /* Pods-Scaffold_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scaffold_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scaffold_Tests/Pods-Scaffold_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		A30699B51CB0A5A1DD64AABE /* Scaffold.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Scaffold.podspec; path = ../Scaffold.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		E56E025F2E213822E29AA755 /* Pods-Scaffold_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scaffold_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scaffold_Tests/Pods-Scaffold_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -69,6 +69,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0080A7EA1D78D2F90043965C /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				0080A7EB1D78D3060043965C /* EnvironmentTestCase.swift */,
+			);
+			name = Environment;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -115,7 +123,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				607FACEB1AFB9204008FA782 /* Tests.swift */,
+				0080A7EA1D78D2F90043965C /* Environment */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
 			path = Tests;
@@ -368,7 +376,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				0080A7EC1D78D3060043965C /* EnvironmentTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -1,11 +1,15 @@
 use_frameworks!
 
+def default_pods
+    pod 'Scaffold', :path => '../'
+end
+
+
 target 'Scaffold_Example' do
-  pod 'Scaffold', :path => '../'
+    default_pods
+end
 
-  target 'Scaffold_Tests' do
+target 'Scaffold_Tests' do
     inherit! :search_paths
-
-    
-  end
+    default_pods
 end
