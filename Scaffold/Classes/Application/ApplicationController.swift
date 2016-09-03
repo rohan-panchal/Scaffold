@@ -17,6 +17,8 @@ public class ApplicationController: UIResponder {
     
     public var window: UIWindow?
     
+    public var environment: EnvironmentType = .Development
+    
     public func initialViewController() -> UIViewController? {
         return nil
     }
