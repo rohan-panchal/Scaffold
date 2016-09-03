@@ -1,10 +1,7 @@
 PODS:
   - Scaffold (0.1.0):
-    - Scaffold/Application (= 0.1.0)
-    - Scaffold/Environment (= 0.1.0)
-  - Scaffold/Application (0.1.0):
-    - Scaffold/Environment
-  - Scaffold/Environment (0.1.0)
+    - Scaffold/Foundation (= 0.1.0)
+  - Scaffold/Foundation (0.1.0)
 
 DEPENDENCIES:
   - Scaffold (from `../`)
@@ -14,7 +11,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Scaffold: 536f578b52a0b1a364883e3496ea700d96b41346
+  Scaffold: e4525557bede3ab4b39946940f330c9a6246eaa0
 
 PODFILE CHECKSUM: 80a7bf06f43dcd825fabcd74dbef1f3792734b3e
 

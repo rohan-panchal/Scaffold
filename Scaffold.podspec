@@ -24,6 +24,12 @@ Pod::Spec.new do |scaffold|
     
     scaffold.ios.deployment_target = '8.0'
     
+    scaffold.default_subspec = 'Foundation'
+    
+    scaffold.subspec 'Foundation' do |foundation|
+        foundation.source_files = 'Scaffold/Classes/Foundation/*.{swift}'
+    end
+    
     scaffold.subspec 'Environment' do |environment|
         environment.source_files = 'Scaffold/Classes/Environment/*.{swift}'
     end
