@@ -13,7 +13,7 @@ enum ApplicationError: ErrorType {
     case InvalidLaunchURL
 }
 
-class ApplicationController: UIResponder {
+public class ApplicationController: UIResponder {
     
     public var window: UIWindow?
     
@@ -25,7 +25,7 @@ class ApplicationController: UIResponder {
 
 extension ApplicationController: UIApplicationDelegate {
     
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    public func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
         do {
             try self.setupWindow()

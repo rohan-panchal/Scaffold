@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0080A7EC1D78D3060043965C /* EnvironmentTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0080A7EB1D78D3060043965C /* EnvironmentTestCase.swift */; };
+		008B588A1D7A0B4F00060C50 /* ApplicationControllerTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008B58891D7A0B4F00060C50 /* ApplicationControllerTestCase.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		0080A7EB1D78D3060043965C /* EnvironmentTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentTestCase.swift; sourceTree = "<group>"; };
+		008B58891D7A0B4F00060C50 /* ApplicationControllerTestCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ApplicationControllerTestCase.swift; path = Application/ApplicationControllerTestCase.swift; sourceTree = "<group>"; };
 		04243FF506B6505971B63DF6 /* Pods-Scaffold_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scaffold_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Scaffold_Example/Pods-Scaffold_Example.release.xcconfig"; sourceTree = "<group>"; };
 		2133A75D46197EDBD684FDB4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		24837BD423CF27A11AAB6F3F /* Pods-Scaffold_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Scaffold_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Scaffold_Example/Pods-Scaffold_Example.debug.xcconfig"; sourceTree = "<group>"; };
@@ -77,6 +79,14 @@
 			name = Environment;
 			sourceTree = "<group>";
 		};
+		008B58861D7A0B2600060C50 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				008B58891D7A0B4F00060C50 /* ApplicationControllerTestCase.swift */,
+			);
+			name = Application;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +133,7 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				008B58861D7A0B2600060C50 /* Application */,
 				0080A7EA1D78D2F90043965C /* Environment */,
 				607FACE91AFB9204008FA782 /* Supporting Files */,
 			);
@@ -376,6 +387,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				008B588A1D7A0B4F00060C50 /* ApplicationControllerTestCase.swift in Sources */,
 				0080A7EC1D78D3060043965C /* EnvironmentTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
