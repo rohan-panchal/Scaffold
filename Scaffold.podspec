@@ -42,4 +42,35 @@ Pod::Spec.new do |scaffold|
         application.source_files = 'Scaffold/Classes/Application/*.{swift}'
     end
     
+    scaffold.subspec 'UIKit' do |uikit|
+        uikit.dependency 'Scaffold/Foundation'
+        
+        uikit.frameworks = 'UIKit'
+        
+        uikit.source_files = 'Scaffold/Classes/UIKit/*.{swift}'
+        
+        uikit.subspec 'Scaffold' do |scaffold|
+            scaffold.dependency 'Scaffold/Foundation'
+            
+            scaffold.frameworks = 'UIKit'
+            
+            scaffold.source_files = 'Scaffold/Classes/UIKit/Scaffold.swift'
+        end
+        
+        uikit.subspec 'Extensions' do |extensions|
+            extensions.dependency 'Scaffold/Foundation'
+            
+            extensions.frameworks = 'UIKit'
+            
+            extensions.source_files = 'Scaffold/Classes/UIKit/Extensions/*.{swift}'
+        end
+        
+        uikit.subspec 'Controllers' do |controllers|
+            controllers.dependency 'Scaffold/UIKit/Scaffold'
+            
+            controllers.source_files = 'Scaffold/Classes/UIKit/Controllers/*.{swift}'
+        end
+        
+    end
+    
 end

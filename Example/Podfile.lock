@@ -3,10 +3,23 @@ PODS:
     - Scaffold/Application (= 0.1.0)
     - Scaffold/Environment (= 0.1.0)
     - Scaffold/Foundation (= 0.1.0)
+    - Scaffold/UIKit (= 0.1.0)
   - Scaffold/Application (0.1.0):
     - Scaffold/Environment
   - Scaffold/Environment (0.1.0)
   - Scaffold/Foundation (0.1.0)
+  - Scaffold/UIKit (0.1.0):
+    - Scaffold/Foundation
+    - Scaffold/UIKit/Controllers (= 0.1.0)
+    - Scaffold/UIKit/Extensions (= 0.1.0)
+    - Scaffold/UIKit/Scaffold (= 0.1.0)
+  - Scaffold/UIKit/Controllers (0.1.0):
+    - Scaffold/Foundation
+    - Scaffold/UIKit/Scaffold
+  - Scaffold/UIKit/Extensions (0.1.0):
+    - Scaffold/Foundation
+  - Scaffold/UIKit/Scaffold (0.1.0):
+    - Scaffold/Foundation
 
 DEPENDENCIES:
   - Scaffold (from `../`)
@@ -16,7 +29,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Scaffold: f3a92f31072f60446e6dedd93d59155643dce727
+  Scaffold: 7345895289eb569d8ec5c39c61dff7e586a2f411
 
 PODFILE CHECKSUM: 80a7bf06f43dcd825fabcd74dbef1f3792734b3e
 
