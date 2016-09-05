@@ -34,7 +34,7 @@ extension ApplicationController: UIApplicationDelegate {
             
             self.window?.makeKeyAndVisible()
         } catch let error as NSError {
-            
+            NSLog("Error reason:\(error.localizedFailureReason)")
             return false
         }
         
