@@ -12,15 +12,15 @@ import Scaffold
 class EnvironmentTestCase: XCTestCase {
     
     func testEnvironmentManagerInitializeEnvironmentDefault() {
-        EnvironmentManager.initializeEnvironment()
+        SCAFEnvironmentManager.initializeEnvironment()
         
-        XCTAssert(EnvironmentManager.sharedManager.environment == .Development)
+        XCTAssert(SCAFEnvironmentManager.sharedManager.environment == .Development)
     }
     
     func testEnvironmentManagerInitializeEnvironmentNonDefaultValue() {
-        EnvironmentManager.initializeEnvironment(.Production)
+        SCAFEnvironmentManager.initializeEnvironment(.Production)
         
-        XCTAssert(EnvironmentManager.sharedManager.environment == .Production)
+        XCTAssert(SCAFEnvironmentManager.sharedManager.environment == .Production)
     }
     
 }

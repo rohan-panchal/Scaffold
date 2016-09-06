@@ -17,7 +17,7 @@ public class SCAFApplicationController: UIResponder {
     
     public var window: UIWindow?
     
-    public var environment: EnvironmentType = .Development
+    public var environment: SCAFEnvironmentType = .Development
     
     public func initialViewController() -> UIViewController? {
         return nil
