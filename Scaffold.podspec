@@ -42,6 +42,19 @@ Pod::Spec.new do |scaffold|
         application.source_files = 'Scaffold/Classes/Application/*.{swift}'
     end
     
+    scaffold.subspec 'Networking' do |networking|
+        networking.subspec 'Controller' do |controller|
+            controller.source_files = 'Scaffold/Classes/Networking/*.{swift}'
+        end
+        
+        networking.subspec 'Alamofire' do |alamofire|
+            alamofire.dependency 'Scaffold/Networking/Controller'
+            alamofire.dependency 'Alamofire'
+            
+            alamofire.source_files = 'Scaffold/Classes/Networking/Alamofire/*.{swift}'
+        end
+    end
+    
     scaffold.subspec 'UIKit' do |uikit|
         uikit.dependency 'Scaffold/Foundation'
         
