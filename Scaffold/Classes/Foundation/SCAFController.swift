@@ -1,5 +1,5 @@
 //
-//  Controller.swift
+//  SCAFController.swift
 //  Scaffold
 //
 //  Created by Rohan Panchal on 9/3/16.
@@ -8,18 +8,18 @@
 
 import Foundation
 
-public enum ControllerStatus: Int {
+public enum SCAFControllerStatus: Int {
     case Offline
     case Initializing
     case Repairing
     case Online
 }
 
-public protocol Controller {
+public protocol SCAFController {
     
     var name: String { get }
     
-    var status: ControllerStatus { get }
+    var status: SCAFControllerStatus { get }
     
     func start() throws
     
@@ -27,7 +27,7 @@ public protocol Controller {
     
 }
 
-public class ControllerNode: NSObject, Controller {
+public class SCAFControllerNode: NSObject, SCAFController {
     
     public var name: String {
         get {
@@ -35,7 +35,7 @@ public class ControllerNode: NSObject, Controller {
         }
     }
     
-    public var status: ControllerStatus = .Offline
+    public var status: SCAFControllerStatus = .Offline
     
     public func start() throws {
         self.status = .Online
