@@ -13,10 +13,25 @@ public enum SCAFNetworkControllerReachabilityStatus {
     case Reachable
 }
 
-public protocol SCAFNetworkController: SCAFController {
+public protocol SCAFNetworkedController: SCAFController {
+    
+    var reachabilityStatus: SCAFNetworkControllerReachabilityStatus { get }
+    var reachabilityHost: String? { get }
+    var host: String { get }
     
     init(host: String, reachabilityHost: String?)
     
-    var reachabilityStatus: SCAFNetworkControllerReachabilityStatus { get }
+}
+
+public class SCAFNetworkControllerNode: SCAFControllerNode, SCAFNetworkedController {
+    
+    public var reachabilityStatus: SCAFNetworkControllerReachabilityStatus = .Unreachable
+    public var reachabilityHost: String?
+    public var host: String
+    
+    public required init(host: String, reachabilityHost: String?) {
+        self.reachabilityHost = reachabilityHost
+        self.host = host
+    }
     
 }
