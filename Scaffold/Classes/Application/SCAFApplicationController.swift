@@ -1,5 +1,5 @@
 //
-//  ApplicationController.swift
+//  SCAFApplicationController.swift
 //  Scaffold
 //
 //  Created by Panchal, Rohan on 9/2/16.
@@ -8,12 +8,12 @@
 
 import UIKit
 
-enum ApplicationError: ErrorType {
+enum SCAFApplicationError: ErrorType {
     case InvalidInitialViewController
     case InvalidLaunchURL
 }
 
-public class ApplicationController: UIResponder {
+public class SCAFApplicationController: UIResponder {
     
     public var window: UIWindow?
     
@@ -25,7 +25,7 @@ public class ApplicationController: UIResponder {
     
 }
 
-extension ApplicationController: UIApplicationDelegate {
+extension SCAFApplicationController: UIApplicationDelegate {
     
     public func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
@@ -46,7 +46,7 @@ extension ApplicationController: UIApplicationDelegate {
 }
 
 // MARK: - Window Setup Options
-extension ApplicationController {
+extension SCAFApplicationController {
     
     private func setupWindow() throws {
         if self.window == nil {
@@ -54,7 +54,7 @@ extension ApplicationController {
         }
         
         guard let initialViewController = self.initialViewController() else {
-            throw ApplicationError.InvalidInitialViewController
+            throw SCAFApplicationError.InvalidInitialViewController
         }
         
         self.window?.rootViewController = initialViewController
@@ -63,7 +63,7 @@ extension ApplicationController {
 }
 
 // MARK: - Launch Options
-extension ApplicationController {
+extension SCAFApplicationController {
     
     private func processLaunchOptions(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
         guard let launchOptions = launchOptions else {
