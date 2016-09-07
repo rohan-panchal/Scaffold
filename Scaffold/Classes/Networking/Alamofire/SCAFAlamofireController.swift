@@ -8,21 +8,43 @@
 
 import Alamofire
 
+extension NetworkReachabilityManager.NetworkReachabilityStatus {
+    
+    public func scafReachabilityStatus() -> SCAFNetworkControllerReachabilityStatus {
+        switch self {
+        case .Unknown:
+            return SCAFNetworkControllerReachabilityStatus.Unknown
+        case .NotReachable:
+            return SCAFNetworkControllerReachabilityStatus.Unreachable
+        case .Reachable:
+            return SCAFNetworkControllerReachabilityStatus.Reachable
+        }
+    }
+    
+}
+
 public class SCAFAlamofireController: SCAFNetworkControllerNode {
     
-    private lazy var manager: Manager = {
+    public lazy var manager: Manager = {
         let manager = Manager()
         manager.startRequestsImmediately = true
         return manager
     }()
     
-    private lazy var reachabilityManager: NetworkReachabilityManager? = {
+    public lazy var reachabilityManager: NetworkReachabilityManager? = {
         if let reachabilityHost = self.reachabilityHost,
             let manager = NetworkReachabilityManager(host: reachabilityHost) {
             return manager
         }
         return nil
     }()
+    
+    override public var reachabilityStatus: SCAFNetworkControllerReachabilityStatus {
+        if let reachability =  self.reachabilityManager?.networkReachabilityStatus {
+            return reachability.scafReachabilityStatus()
+        }
+        return .Unknown
+    }
     
     public required init(host: String, reachabilityHost: String?) {
         super.init(host: host, reachabilityHost: reachabilityHost)

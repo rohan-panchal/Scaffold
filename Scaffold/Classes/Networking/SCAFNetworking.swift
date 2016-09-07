@@ -9,6 +9,7 @@
 import Foundation
 
 public enum SCAFNetworkControllerReachabilityStatus {
+    case Unknown
     case Unreachable
     case Reachable
 }
@@ -25,7 +26,9 @@ public protocol SCAFNetworkedController: SCAFController {
 
 public class SCAFNetworkControllerNode: SCAFControllerNode, SCAFNetworkedController {
     
-    public var reachabilityStatus: SCAFNetworkControllerReachabilityStatus = .Unreachable
+    public var reachabilityStatus: SCAFNetworkControllerReachabilityStatus {
+        return .Unknown
+    }
     public var reachabilityHost: String?
     public var host: String
     
