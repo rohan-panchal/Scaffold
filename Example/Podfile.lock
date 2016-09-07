@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (3.4.2)
+  - Alamofire (3.4.1)
   - Scaffold (0.1.0):
     - Scaffold/Application (= 0.1.0)
     - Scaffold/Environment (= 0.1.0)
@@ -14,7 +14,7 @@ PODS:
     - Scaffold/Networking/Alamofire (= 0.1.0)
     - Scaffold/Networking/Controller (= 0.1.0)
   - Scaffold/Networking/Alamofire (0.1.0):
-    - Alamofire
+    - Alamofire (= 3.4.1)
     - Scaffold/Networking/Controller
   - Scaffold/Networking/Controller (0.1.0)
   - Scaffold/UIKit (0.1.0):
@@ -39,8 +39,8 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  Alamofire: 6aa33201d20d069e1598891cf928883ff1888c7a
-  Scaffold: e4905202480e39011798f27fdd9927cff8f2ee28
+  Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
+  Scaffold: 2f546c6f71638b4a5c39c771d0c646dee4315546
 
 PODFILE CHECKSUM: 80a7bf06f43dcd825fabcd74dbef1f3792734b3e
 
