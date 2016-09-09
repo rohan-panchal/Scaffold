@@ -65,7 +65,8 @@ extension UITextField {
                                 text: String = "",
                                 placeholder: String = "",
                                 borderStyle: UITextBorderStyle = .RoundedRect,
-                                textColor: UIColor = UIColor.blackColor()) -> UITextField {
+                                textColor: UIColor = UIColor.blackColor(),
+                                secureTextEntry: Bool = false) -> UITextField {
         
         let textField = UITextField(frame: frame)
         textField.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
@@ -74,6 +75,7 @@ extension UITextField {
         textField.placeholder = placeholder
         textField.borderStyle = borderStyle
         textField.textColor = textColor
+        textField.secureTextEntry = secureTextEntry
         
         return textField
     }
