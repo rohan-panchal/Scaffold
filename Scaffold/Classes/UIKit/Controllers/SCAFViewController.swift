@@ -10,6 +10,10 @@ import UIKit
 
 public class SCAFViewController: UIViewController {
     
+    public var hidesNavigationBar: Bool {
+        return false
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
@@ -25,10 +29,16 @@ extension SCAFViewController: UIScaffold {
         self.setupActions()
         self.setupColorScheme()
         self.setLocalizedCopy()
+        
+        self.setupControllerCustomization()
     }
     
     public func initialSubviews() -> [UIView] {
         return []
+    }
+    
+    private func setupControllerCustomization() {
+        self.navigationController?.setNavigationBarHidden(self.hidesNavigationBar, animated: true)
     }
     
     public func setupConstraints(rootView: UIView) {
