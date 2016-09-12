@@ -62,6 +62,51 @@ extension UIView {
     
 }
 
+extension UIView {
+    
+    /**
+     Cycles through the UIView's constraints and removes any which have the firstItem or the secondItem as the provided
+     UIView.
+     
+     - parameter view: A UIView that any constraint associated with should be removed.
+     */
+    public func removeConstraintsWithView(view: UIView) {
+        for constraint in self.constraints {
+            if constraint.firstItem as! NSObject == view || constraint.secondItem as! NSObject == view {
+                self.removeConstraint(constraint)
+            }
+        }
+    }
+    
+    /**
+     Animates a set of constraint changes.
+     
+     In reality, any set of changes to attributes of UI elements can be made within the changes closure but with the
+     added benefit of calling `layoutIfNeeded` before and during the animation sequence.
+     
+     - parameter duration:   An NSTimeInterval representing the duration of the animation.
+     - parameter delay:      An NSTimeInterval representing the delay before which the animation should execute.
+     - parameter options:    A set of UIViewAnimationOptions for the animation to follow.
+     - parameter changes:    A closure containing the attribute changes to be called during the animation.
+     - parameter completion: A closure called upon completion of the animation, with a Bool as a parameter.
+     */
+    public func animateConstraintChanges(duration: NSTimeInterval = 0.25,
+                                         delay: NSTimeInterval = 0.0,
+                                         options: UIViewAnimationOptions = [.CurveEaseInOut],
+                                         changes: (() -> Void),
+                                         completion: ((Bool) -> Void)?) {
+        self.layoutIfNeeded()
+        UIView.animateWithDuration(duration,
+                                   delay: delay,
+                                   options: options,
+                                   animations: { [weak self] in
+                                    changes()
+                                    self?.layoutIfNeeded()
+            }, completion: completion)
+    }
+    
+}
+
 extension UIButton {
     
     public class func button(frame: CGRect = CGRectZero,
