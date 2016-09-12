@@ -67,7 +67,7 @@ extension UIButton {
     public class func button(frame: CGRect = CGRectZero,
                              translatesAutoresizingMaskIntoConstraints: Bool = false,
                              tintColor: UIColor = UIColor.blackColor(),
-                             type: UIButtonType = .RoundedRect,
+                             type: UIButtonType = .System,
                              title: String = "",
                              titleColor: UIColor = UIColor.blackColor()) -> UIButton {
         let button = UIButton(type: type)
