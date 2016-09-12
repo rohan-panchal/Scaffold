@@ -14,8 +14,8 @@ public class SCAFViewController: UIViewController {
         return false
     }
     
-    public var scaffoldedNavigationController: SCAFNavigationController? {
-        guard let navigationController = self.navigationController as? SCAFNavigationController else {
+    public var progressNavigationController: SCAFProgressNavigationController? {
+        guard let navigationController = self.navigationController as? SCAFProgressNavigationController else {
             return nil
         }
         return navigationController
