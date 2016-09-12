@@ -14,6 +14,13 @@ public class SCAFViewController: UIViewController {
         return false
     }
     
+    public var scaffoldedNavigationController: SCAFNavigationController? {
+        guard let navigationController = self.navigationController as? SCAFNavigationController else {
+            return nil
+        }
+        return navigationController
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
