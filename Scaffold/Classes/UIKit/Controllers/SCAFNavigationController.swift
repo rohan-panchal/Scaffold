@@ -24,7 +24,7 @@ public class SCAFNavigationController: UINavigationController {
     
 }
 
-public class SCAFProgressNavigationController: UINavigationController {
+public class SCAFProgressNavigationController: SCAFNavigationController {
     
     public lazy var progressView: UIProgressView = UIProgressView(progressViewStyle: .Bar)
     
