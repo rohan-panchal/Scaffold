@@ -8,6 +8,8 @@
 
 import UIKit
 
+let UIControlStates: UIControlState = [.Normal, .Highlighted, .Disabled, .Selected, .Application, .Reserved]
+
 extension UIView {
     
     public func addSubviews(views: [UIView]) {
@@ -48,12 +50,35 @@ extension UIView {
 extension UIView {
     
     public class func view(frame: CGRect = CGRectZero,
-                           translatesAutoresizingMaskIntoConstraints: Bool = false) -> UIView {
+                           translatesAutoresizingMaskIntoConstraints: Bool = false,
+                           tintColor: UIColor = UIColor.blackColor()) -> UIView {
         
         let view = UIView(frame: frame)
         view.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
+        view.tintColor = tintColor
         
         return view
+    }
+    
+}
+
+extension UIButton {
+    
+    public class func button(frame: CGRect = CGRectZero,
+                             translatesAutoresizingMaskIntoConstraints: Bool = false,
+                             tintColor: UIColor = UIColor.blackColor(),
+                             type: UIButtonType = .RoundedRect,
+                             title: String = "",
+                             titleColor: UIColor = UIColor.blackColor()) -> UIButton {
+        let button = UIButton(type: type)
+        button.frame = frame
+        button.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
+        button.tintColor = tintColor
+        
+        button.setTitle(title, forState: UIControlStates)
+        button.setTitleColor(titleColor, forState: UIControlStates)
+        
+        return button
     }
     
 }
@@ -62,6 +87,7 @@ extension UITextField {
     
     public class func textField(frame: CGRect = CGRectZero,
                                 translatesAutoresizingMaskIntoConstraints: Bool = false,
+                                tintColor: UIColor = UIColor.blackColor(),
                                 text: String = "",
                                 placeholder: String = "",
                                 borderStyle: UITextBorderStyle = .RoundedRect,
@@ -70,6 +96,7 @@ extension UITextField {
         
         let textField = UITextField(frame: frame)
         textField.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
+        textField.tintColor = tintColor
         
         textField.text = text
         textField.placeholder = placeholder
