@@ -95,6 +95,7 @@ extension UITextField {
                                 tintColor: UIColor = UIColor.blackColor(),
                                 text: String = "",
                                 placeholder: String = "",
+                                font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize()),
                                 borderStyle: UITextBorderStyle = .RoundedRect,
                                 textColor: UIColor = UIColor.blackColor(),
                                 secureTextEntry: Bool = false) -> UITextField {
@@ -105,6 +106,7 @@ extension UITextField {
         
         textField.text = text
         textField.placeholder = placeholder
+        textField.font = font
         textField.borderStyle = borderStyle
         textField.textColor = textColor
         textField.secureTextEntry = secureTextEntry
