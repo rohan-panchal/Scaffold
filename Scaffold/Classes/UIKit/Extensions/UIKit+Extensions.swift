@@ -8,7 +8,7 @@
 
 import UIKit
 
-let UIControlStates: UIControlState = [.Normal, .Highlighted, .Disabled, .Selected, .Application, .Reserved]
+let controlStates: [UIControlState] = [.Normal, .Highlighted, .Disabled, .Selected, .Application, .Reserved]
 
 extension UIView {
     
@@ -75,8 +75,10 @@ extension UIButton {
         button.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
         button.tintColor = tintColor
         
-        button.setTitle(title, forState: UIControlStates)
-        button.setTitleColor(titleColor, forState: UIControlStates)
+        for controlState in controlStates {
+            button.setTitle(title, forState: controlState)
+            button.setTitleColor(titleColor, forState: controlState)
+        }
         
         return button
     }
