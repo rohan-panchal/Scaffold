@@ -69,7 +69,8 @@ extension UIButton {
                              tintColor: UIColor = UIColor.blackColor(),
                              type: UIButtonType = .System,
                              title: String = "",
-                             titleColor: UIColor = UIColor.blackColor()) -> UIButton {
+                             titleColor: UIColor = UIColor.blackColor(),
+                             font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())) -> UIButton {
         let button = UIButton(type: type)
         button.frame = frame
         button.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
@@ -79,6 +80,8 @@ extension UIButton {
             button.setTitle(title, forState: controlState)
             button.setTitleColor(titleColor, forState: controlState)
         }
+        
+        button.titleLabel?.font = font
         
         return button
     }
