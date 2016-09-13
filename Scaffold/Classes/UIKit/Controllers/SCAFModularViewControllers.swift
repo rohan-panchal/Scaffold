@@ -136,6 +136,10 @@ public class SCAFModularViewController: SCAFViewController {
         self.view.addConstraint(self.bottomViewHeightConstraint)
     }
     
+    override public func setupColorScheme() {
+        self.centerView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+    }
+    
 }
 
 public class SCAFTableViewController: SCAFModularViewController {
@@ -159,10 +163,6 @@ public class SCAFTableViewController: SCAFModularViewController {
         for cellIdentifier in identifiers.keys {
             self.tableView.registerClass(identifiers[cellIdentifier], forCellReuseIdentifier: cellIdentifier)
         }
-    }
-    
-    override public func setupColorScheme() {
-        self.tableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
     }
     
 }
