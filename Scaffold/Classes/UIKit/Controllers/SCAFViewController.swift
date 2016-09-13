@@ -14,6 +14,10 @@ public class SCAFViewController: UIViewController {
         return false
     }
     
+    public var hideNavigationBackButton: Bool {
+        return false
+    }
+    
     public var progressNavigationController: SCAFProgressNavigationController? {
         guard let navigationController = self.navigationController as? SCAFProgressNavigationController else {
             return nil
@@ -46,6 +50,7 @@ extension SCAFViewController: UIScaffold {
     
     private func setupControllerCustomization() {
         self.navigationController?.setNavigationBarHidden(self.hidesNavigationBar, animated: true)
+        self.navigationItem.hidesBackButton = self.hideNavigationBackButton
     }
     
     public func setupConstraints(rootView: UIView) {
