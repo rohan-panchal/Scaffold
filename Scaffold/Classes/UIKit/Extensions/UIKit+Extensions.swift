@@ -133,6 +133,32 @@ extension UIButton {
     
 }
 
+extension UILabel {
+    
+    public class func label(frame: CGRect = CGRectZero,
+                            translatesAutoresizingMaskIntoConstraints: Bool = false,
+                            tintColor: UIColor = UIColor.blackColor(),
+                            text: String = "",
+                            textColor: UIColor = UIColor.blackColor(),
+                            textAlignment: NSTextAlignment = .Left,
+                            font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize()),
+                            numberOfLines: Int = 1) -> UILabel {
+        let label = UILabel(frame: frame)
+        label.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
+        label.tintColor = tintColor
+        
+        label.text = text
+        label.textColor = textColor
+        label.textAlignment = textAlignment
+        
+        label.font = font
+        label.numberOfLines = numberOfLines
+        
+        return label
+    }
+    
+}
+
 extension UITextField {
     
     public class func textField(frame: CGRect = CGRectZero,
