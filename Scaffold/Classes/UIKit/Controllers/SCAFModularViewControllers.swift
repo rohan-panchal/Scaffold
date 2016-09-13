@@ -101,10 +101,6 @@ public class SCAFModularViewController: SCAFViewController {
         return 0.0
     }
     
-    public func tableViewCellIdentifiers() -> [String:AnyClass] {
-        return [:]
-    }
-    
     override public func setupConstraints(rootView: UIView) {
         super.setupConstraints(rootView)
         
@@ -142,15 +138,23 @@ public class SCAFModularViewController: SCAFViewController {
     
 }
 
+extension SCAFModularViewController {
+    
+    public func cellIdentifiers() -> [String:AnyClass] {
+        return [:]
+    }
+    
+}
+
 public class SCAFTableViewController: SCAFModularViewController {
     
     public var tableView: UITableView!
     
     override public func viewDidLoad() {
         super.viewDidLoad()
-        self.registerTableViewCellIdentifiers(self.tableViewCellIdentifiers())
+        self.registerTableViewCellIdentifiers(self.cellIdentifiers())
     }
-    
+
     public override func setupCenterView() -> UIView {
         self.tableView = self.setupTableView()
         return self.tableView
@@ -190,6 +194,7 @@ public class SCAFCollectionViewController: SCAFModularViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        self.registerCollectionViewCellIdentifiers(self.cellIdentifiers())
     }
     
     public override func setupCenterView() -> UIView {
