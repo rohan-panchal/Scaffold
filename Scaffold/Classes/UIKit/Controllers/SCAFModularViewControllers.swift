@@ -152,7 +152,8 @@ public class SCAFTableViewController: SCAFModularViewController {
     }
     
     public override func setupCenterView() -> UIView {
-        return self.setupTableView()
+        self.tableView = self.setupTableView()
+        return self.tableView
     }
     
     func setupTableView() -> UITableView {
@@ -192,7 +193,8 @@ public class SCAFCollectionViewController: SCAFModularViewController {
     }
     
     public override func setupCenterView() -> UIView {
-        return self.setupCollectionView()
+        self.collectionView = self.setupCollectionView()
+        return self.collectionView
     }
     
     func setupCollectionView() -> UICollectionView {
