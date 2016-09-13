@@ -114,7 +114,7 @@ public class SCAFModularViewController: SCAFViewController {
         
         self.centerView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[_tableView]|",
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[_centerView]|",
             options: NSLayoutFormatOptions.AlignmentMask,
             metrics: nil,
             views: views))
