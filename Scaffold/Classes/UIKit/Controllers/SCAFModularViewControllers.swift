@@ -1,5 +1,5 @@
 //
-//  SCAFTableViewController.swift
+//  SCAFModularViewControllers.swift
 //  Scaffold
 //
 //  Created by Panchal, Rohan on 9/6/16.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-public class SCAFTableViewController: SCAFViewController {
+public class SCAFModularViewController: SCAFViewController {
     
-    public var tableView: UITableView!
     public var topView: UIView!
+    public var centerView: UIView!
     public var bottomView: UIView!
     
     private lazy var topViewTopSpacingConstraint: NSLayoutConstraint = {
@@ -71,23 +71,14 @@ public class SCAFTableViewController: SCAFViewController {
         }
     }
     
-    override public func viewDidLoad() {
-        super.viewDidLoad()
-        self.registerTableViewCellIdentifiers(self.tableViewCellIdentifiers())
-    }
-    
     override public func initialSubviews() -> [UIView] {
         self.edgesForExtendedLayout = UIRectEdge.None
-        self.tableView = self.setupTableView()
+        self.centerView = self.setupCenterView()
         self.topView = self.setupTopView()
         self.bottomView = self.setupBottomView()
-        return [self.tableView,
+        return [self.centerView,
                 self.topView,
                 self.bottomView]
-    }
-    
-    func setupTableView() -> UITableView {
-        return UITableView()
     }
     
     func setupTopView() -> UIView {
@@ -96,6 +87,10 @@ public class SCAFTableViewController: SCAFViewController {
     
     public func initialTopViewHeight() -> CGFloat {
         return 0.0
+    }
+    
+    public func setupCenterView() -> UIView {
+        return UIView.view()
     }
     
     public func setupBottomView() -> UIView {
@@ -110,20 +105,15 @@ public class SCAFTableViewController: SCAFViewController {
         return [:]
     }
     
-    private func registerTableViewCellIdentifiers(identifiers: [String:AnyClass]) {
-        for cellIdentifier in identifiers.keys {
-            self.tableView.registerClass(identifiers[cellIdentifier], forCellReuseIdentifier: cellIdentifier)
-        }
-    }
-    
     override public func setupConstraints(rootView: UIView) {
         super.setupConstraints(rootView)
         
-        let views = ["_tableView": self.tableView,
+        let views = ["_centerView": self.centerView,
                      "_topView": self.topView,
                      "_bottomView": self.bottomView]
         
-        self.tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.centerView.translatesAutoresizingMaskIntoConstraints = false
+        
         self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[_tableView]|",
             options: NSLayoutFormatOptions.AlignmentMask,
             metrics: nil,
@@ -136,7 +126,7 @@ public class SCAFTableViewController: SCAFViewController {
             options: NSLayoutFormatOptions.AlignmentMask,
             metrics: nil,
             views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[_topView][_tableView][_bottomView]|",
+        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[_topView][_centerView][_bottomView]|",
             options: NSLayoutFormatOptions.AlignAllCenterX,
             metrics: nil,
             views: views))
@@ -144,6 +134,31 @@ public class SCAFTableViewController: SCAFViewController {
         self.view.addConstraint(self.topViewTopSpacingConstraint)
         self.view.addConstraint(self.topViewHeightConstraint)
         self.view.addConstraint(self.bottomViewHeightConstraint)
+    }
+    
+}
+
+public class SCAFTableViewController: SCAFModularViewController {
+    
+    public var tableView: UITableView!
+    
+    override public func viewDidLoad() {
+        super.viewDidLoad()
+        self.registerTableViewCellIdentifiers(self.tableViewCellIdentifiers())
+    }
+    
+    public override func setupCenterView() -> UIView {
+        return self.setupTableView()
+    }
+    
+    func setupTableView() -> UITableView {
+        return UITableView()
+    }
+    
+    private func registerTableViewCellIdentifiers(identifiers: [String:AnyClass]) {
+        for cellIdentifier in identifiers.keys {
+            self.tableView.registerClass(identifiers[cellIdentifier], forCellReuseIdentifier: cellIdentifier)
+        }
     }
     
     override public func setupColorScheme() {
@@ -164,6 +179,37 @@ public class SCAFGroupedTableViewController: SCAFTableViewController {
     
     override func setupTableView() -> UITableView {
         return UITableView(frame: self.view.frame, style: UITableViewStyle.Grouped)
+    }
+    
+}
+
+public class SCAFCollectionViewController: SCAFModularViewController {
+    
+    public var collectionView: UICollectionView!
+    
+    public override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+    
+    public override func setupCenterView() -> UIView {
+        return self.setupCollectionView()
+    }
+    
+    func setupCollectionView() -> UICollectionView {
+        return UICollectionView(frame: CGRectZero, collectionViewLayout: self.setupCollectionViewLayout())
+    }
+    
+    private func registerCollectionViewCellIdentifiers(identifiers: [String:AnyClass]) {
+        for cellIdentifier in identifiers.keys {
+            self.collectionView.registerClass(identifiers[cellIdentifier], forCellWithReuseIdentifier: cellIdentifier)
+        }
+    }
+    
+    public func setupCollectionViewLayout() -> UICollectionViewLayout {
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 90, height: 120)
+        return layout
     }
     
 }
