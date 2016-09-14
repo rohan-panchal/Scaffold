@@ -13,6 +13,11 @@ public class SCAFCollectionViewCell: UICollectionViewCell {
     public class func defaultReuseIdentifer() -> String {
         return self.className
     }
+    
+    public override init(frame: CGRect) {
+        super.init(frame: frame)
+        self.setup()
+    }
 
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
