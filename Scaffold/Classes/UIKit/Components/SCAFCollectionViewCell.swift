@@ -1,6 +1,6 @@
 //
 //  SCAFCollectionViewCell.swift
-//  Pods
+//  Scaffold
 //
 //  Created by Rohan Panchal on 9/12/16.
 //

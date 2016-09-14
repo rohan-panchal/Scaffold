@@ -86,6 +86,13 @@ Pod::Spec.new do |scaffold|
             controllers.source_files = 'Scaffold/Classes/UIKit/Controllers/*.{swift}'
         end
         
+        uikit.subspec 'Components' do |components|
+            components.dependency 'Scaffold/UIKit/Scaffold'
+            components.dependency 'Scaffold/UIKit/Extensions'
+            
+            components.source_files = 'Scaffold/Classes/UIKit/Components/*.{swift}'
+        end
+        
     end
     
 end
