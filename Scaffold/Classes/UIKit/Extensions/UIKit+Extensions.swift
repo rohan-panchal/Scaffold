@@ -51,13 +51,20 @@ extension UIView {
     
     public class func view(frame: CGRect = CGRectZero,
                            translatesAutoresizingMaskIntoConstraints: Bool = false,
-                           tintColor: UIColor = UIColor.blackColor()) -> UIView {
-        
+                           tintColor: UIColor = UIColor.blackColor()) -> Self {
+        return viewGenerator(frame,
+                             translatesAutoresizingMaskIntoConstraints: translatesAutoresizingMaskIntoConstraints,
+                             tintColor: tintColor)
+    }
+    
+    private class func viewGenerator<T: UIView>(frame: CGRect = CGRectZero,
+                                     translatesAutoresizingMaskIntoConstraints: Bool = false,
+                                     tintColor: UIColor = UIColor.blackColor()) -> T {
         let view = UIView(frame: frame)
         view.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
         view.tintColor = tintColor
         
-        return view
+        return view as! T
     }
     
 }
