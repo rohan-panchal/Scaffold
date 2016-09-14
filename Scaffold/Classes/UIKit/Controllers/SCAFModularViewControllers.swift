@@ -214,8 +214,8 @@ public class SCAFCollectionViewController: SCAFModularViewController {
     
     public func setupCollectionViewLayout() -> UICollectionViewLayout {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.sectionInset = UIEdgeInsets(top: 20, left: 10, bottom: 10, right: 10)
-        layout.itemSize = CGSize(width: 90, height: 120)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        layout.itemSize = CGSize(width: 100, height: 100)
         return layout
     }
     
