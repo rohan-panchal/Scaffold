@@ -16,10 +16,10 @@ public class SCAFModularViewController: SCAFViewController {
     
     private lazy var topViewTopSpacingConstraint: NSLayoutConstraint = {
         return NSLayoutConstraint(item: self.topView,
-                                  attribute: .TopMargin,
+                                  attribute: .Top,
                                   relatedBy: .Equal,
                                   toItem: self.topLayoutGuide,
-                                  attribute: .BottomMargin,
+                                  attribute: .Bottom,
                                   multiplier: 1.0,
                                   constant: 0.0)
     }()
