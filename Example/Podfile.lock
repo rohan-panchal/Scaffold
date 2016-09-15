@@ -16,7 +16,8 @@ PODS:
   - Scaffold/Networking/Alamofire (0.1.0):
     - Alamofire (= 3.4.1)
     - Scaffold/Networking/Controller
-  - Scaffold/Networking/Controller (0.1.0)
+  - Scaffold/Networking/Controller (0.1.0):
+    - Scaffold/Foundation
   - Scaffold/UIKit (0.1.0):
     - Scaffold/Foundation
     - Scaffold/UIKit/Components (= 0.1.0)
@@ -45,7 +46,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: 01a82e2f6c0f860ade35534c8dd88be61bdef40c
-  Scaffold: 297c6e291f06059f177c81c935417d4efe253dbb
+  Scaffold: a79539d754e5828cc620822862faab51816df0ae
 
 PODFILE CHECKSUM: 80a7bf06f43dcd825fabcd74dbef1f3792734b3e
 

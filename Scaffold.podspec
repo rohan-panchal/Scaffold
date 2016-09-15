@@ -44,6 +44,8 @@ Pod::Spec.new do |scaffold|
     
     scaffold.subspec 'Networking' do |networking|
         networking.subspec 'Controller' do |controller|
+            controller.dependency 'Scaffold/Foundation'
+            
             controller.source_files = 'Scaffold/Classes/Networking/*.{swift}'
         end
         
