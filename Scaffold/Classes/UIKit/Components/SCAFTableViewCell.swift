@@ -14,6 +14,10 @@ public class SCAFTableViewCell: UITableViewCell {
         return self.className
     }
     
+    public class func defaultHeight() -> CGFloat {
+        return 44
+    }
+    
     public override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.setup()

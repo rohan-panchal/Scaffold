@@ -14,6 +14,10 @@ public class SCAFCollectionViewCell: UICollectionViewCell {
         return self.className
     }
     
+    public class func defaultHeight() -> CGFloat {
+        return 44
+    }
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         self.setup()
@@ -53,4 +57,3 @@ extension SCAFCollectionViewCell: UIScaffold {
     }
     
 }
-
