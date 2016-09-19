@@ -192,9 +192,23 @@ public class SCAFCollectionViewController: SCAFModularViewController {
     
     public var collectionView: UICollectionView!
     
+    public func headerCellIdentifiers()-> [String: AnyClass]? {
+        return nil
+    }
+    
+    public func footerCellIdentifiers()-> [String: AnyClass]? {
+        return nil
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCollectionViewCellIdentifiers(self.cellIdentifiers())
+        if let headerCellIdentifiers = self.headerCellIdentifiers() {
+            self.registerCollectionViewSupplementaryHeaderCellIdentifiers(headerCellIdentifiers)
+        }
+        if let footerCellIdentifiers = self.footerCellIdentifiers() {
+            self.registerCollectionViewSupplementaryFooterCellIdentifiers(footerCellIdentifiers)
+        }
     }
     
     public override func setupCenterView() -> UIView {
@@ -209,6 +223,22 @@ public class SCAFCollectionViewController: SCAFModularViewController {
     private func registerCollectionViewCellIdentifiers(identifiers: [String:AnyClass]) {
         for cellIdentifier in identifiers.keys {
             self.collectionView.registerClass(identifiers[cellIdentifier], forCellWithReuseIdentifier: cellIdentifier)
+        }
+    }
+    
+    private func registerCollectionViewSupplementaryHeaderCellIdentifiers(identifiers: [String:AnyClass]) {
+        for cellIdentifier in identifiers.keys {
+            self.collectionView.registerClass(identifiers[cellIdentifier],
+                                              forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
+                                              withReuseIdentifier: cellIdentifier)
+        }
+    }
+    
+    private func registerCollectionViewSupplementaryFooterCellIdentifiers(identifiers: [String:AnyClass]) {
+        for cellIdentifier in identifiers.keys {
+            self.collectionView.registerClass(identifiers[cellIdentifier],
+                                              forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
+                                              withReuseIdentifier: cellIdentifier)
         }
     }
     
