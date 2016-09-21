@@ -10,10 +10,6 @@ import UIKit
 
 public class SCAFModularViewController: SCAFViewController {
     
-    public var detectsLongPress: Bool {
-        return false
-    }
-    
     private lazy var longPressGestureRecognizer: UILongPressGestureRecognizer = {
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressDetected))
         gestureRecognizer.minimumPressDuration = 0.5
@@ -150,7 +146,7 @@ public class SCAFModularViewController: SCAFViewController {
     override public func setupActions() {
         super.setupActions()
         
-        if self.detectsLongPress {
+        if self.detectsLongPress() {
             self.centerView.addGestureRecognizer(self.longPressGestureRecognizer)
         }
     }
@@ -158,6 +154,10 @@ public class SCAFModularViewController: SCAFViewController {
 }
 
 extension SCAFModularViewController {
+    
+    public func detectsLongPress() -> Bool {
+        return false
+    }
     
     @objc private func longPressDetected(gestureRecognizer: UILongPressGestureRecognizer) {
     }
