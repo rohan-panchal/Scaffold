@@ -12,7 +12,7 @@ public class SCAFModularViewController: SCAFViewController {
     
     private lazy var longPressGestureRecognizer: UILongPressGestureRecognizer = {
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressDetected))
-        gestureRecognizer.minimumPressDuration = 0.5
+        gestureRecognizer.minimumPressDuration = self.longPressMinimumTimeInterval()
         gestureRecognizer.delaysTouchesBegan = true
         return gestureRecognizer
     }()
@@ -157,6 +157,10 @@ extension SCAFModularViewController {
     
     public func detectsLongPress() -> Bool {
         return false
+    }
+    
+    public func longPressMinimumTimeInterval() -> CFTimeInterval {
+        return 0.5
     }
     
     @objc private func longPressDetected(gestureRecognizer: UILongPressGestureRecognizer) {
