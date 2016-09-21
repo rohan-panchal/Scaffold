@@ -10,7 +10,7 @@ import UIKit
 
 extension UIAlertController {
     
-    public func actionSheetController(title: String?,
+    public class func actionSheetController(title: String?,
                                       message: String?,
                                       actions: [UIAlertAction]? = []) -> UIAlertController {
         return alertControllerGenerator(title,
@@ -19,7 +19,7 @@ extension UIAlertController {
                                         actions: actions)
     }
     
-    public func alertController(title: String?,
+    public class func alertController(title: String?,
                                 message: String?,
                                 actions: [UIAlertAction]? = []) -> UIAlertController {
         return alertControllerGenerator(title,
@@ -28,7 +28,7 @@ extension UIAlertController {
                                         actions: actions)
     }
     
-    public func alertControllerGenerator(title: String?,
+    public class func alertControllerGenerator(title: String?,
                                 message: String?,
                                 preferredStyle: UIAlertControllerStyle = .Alert,
                                 actions: [UIAlertAction]? = []) -> UIAlertController {
