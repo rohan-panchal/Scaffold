@@ -10,6 +10,17 @@ import UIKit
 
 public class SCAFModularViewController: SCAFViewController {
     
+    public var detectsLongPress: Bool {
+        return false
+    }
+    
+    private lazy var longPressGestureRecognizer: UILongPressGestureRecognizer = {
+        let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressDetected))
+        gestureRecognizer.minimumPressDuration = 0.5
+        gestureRecognizer.delaysTouchesBegan = true
+        return gestureRecognizer
+    }()
+    
     public var topView: UIView!
     public var centerView: UIView!
     public var bottomView: UIView!
@@ -136,6 +147,21 @@ public class SCAFModularViewController: SCAFViewController {
         self.centerView.backgroundColor = UIColor.groupTableViewBackgroundColor()
     }
     
+    override public func setupActions() {
+        super.setupActions()
+        
+        if self.detectsLongPress {
+            self.centerView.addGestureRecognizer(self.longPressGestureRecognizer)
+        }
+    }
+    
+}
+
+extension SCAFModularViewController {
+    
+    @objc private func longPressDetected(gestureRecognizer: UILongPressGestureRecognizer) {
+    }
+    
 }
 
 extension SCAFModularViewController {
@@ -247,6 +273,25 @@ public class SCAFCollectionViewController: SCAFModularViewController {
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 100, height: 100)
         return layout
+    }
+    
+}
+
+extension SCAFCollectionViewController {
+    
+    private override func longPressDetected(gestureRecognizer: UILongPressGestureRecognizer) {
+        let location: CGPoint = gestureRecognizer.locationInView(self.collectionView)
+
+        let indexPath = self.collectionView.indexPathForItemAtPoint(location)
+        
+        if let index = indexPath,
+            let cell = self.collectionView.cellForItemAtIndexPath(index) {
+            self.didLongPressOnCell(cell, atIndexPath: indexPath)
+        }
+    }
+    
+    public func didLongPressOnCell(cell: UICollectionViewCell?, atIndexPath indexPath: NSIndexPath?) {
+        
     }
     
 }
