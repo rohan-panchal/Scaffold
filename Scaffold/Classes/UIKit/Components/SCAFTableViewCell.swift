@@ -56,4 +56,7 @@ extension SCAFTableViewCell: UIScaffold {
     public func setLocalizedCopy() {
     }
     
+    @objc public func notificationHandler(notification: NSNotification) {
+    }
+    
 }

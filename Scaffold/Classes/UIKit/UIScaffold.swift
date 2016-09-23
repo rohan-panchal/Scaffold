@@ -20,4 +20,16 @@ public protocol UIScaffold {
     
     func setLocalizedCopy()
     
+    func notificationNames() -> [String]
+    
+    func notificationHandler(notification: NSNotification)
+    
+}
+
+extension UIScaffold {
+    
+    public func notificationNames() -> [String] {
+        return []
+    }
+    
 }

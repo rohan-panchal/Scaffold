@@ -30,6 +30,10 @@ public class SCAFViewController: UIViewController {
         self.setup()
     }
     
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+    
 }
 
 extension SCAFViewController: UIScaffold {
@@ -42,15 +46,23 @@ extension SCAFViewController: UIScaffold {
         self.setLocalizedCopy()
         
         self.setupControllerCustomization()
+        
+        self.setupNotificationObservers()
     }
     
-    public func initialSubviews() -> [UIView] {
-        return []
+    private func setupNotificationObservers() {
+        for notificationName in self.notificationNames() {
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(notificationHandler), name: notificationName, object: nil)
+        }
     }
     
     private func setupControllerCustomization() {
         self.navigationController?.setNavigationBarHidden(self.hidesNavigationBar, animated: true)
         self.navigationItem.hidesBackButton = self.hideNavigationBackButton
+    }
+    
+    public func initialSubviews() -> [UIView] {
+        return []
     }
     
     public func setupConstraints(rootView: UIView) {
@@ -63,6 +75,13 @@ extension SCAFViewController: UIScaffold {
     }
     
     public func setLocalizedCopy() {
+    }
+    
+    public func notificationNames() -> [String] {
+        return []
+    }
+    
+    @objc public func notificationHandler(notification: NSNotification) {
     }
     
 }

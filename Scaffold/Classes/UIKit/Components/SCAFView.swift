@@ -48,4 +48,7 @@ extension SCAFView: UIScaffold {
     public func setLocalizedCopy() {
     }
     
+    @objc public func notificationHandler(notification: NSNotification) {
+    }
+    
 }
