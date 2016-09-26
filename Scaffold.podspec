@@ -35,6 +35,7 @@ Pod::Spec.new do |scaffold|
     end
     
     scaffold.subspec 'Application' do |application|
+        application.dependency 'Scaffold/Foundation'
         application.dependency 'Scaffold/Environment'
         
         application.frameworks = 'UIKit'
