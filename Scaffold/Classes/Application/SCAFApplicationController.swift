@@ -38,9 +38,27 @@ extension SCAFApplicationController: UIApplicationDelegate {
             return false
         }
         
+        if Platform.Simulator {
+            self.applicationWillLaunchInSimulator()
+        } else if Platform.iOS {
+            self.applicationWillLaunchOnDevice()
+        }
+        
         self.processLaunchOptions(application, launchOptions: launchOptions)
         
         return true
+    }
+    
+}
+
+extension SCAFApplicationController {
+    
+    public func applicationWillLaunchInSimulator() {
+        
+    }
+    
+    public func applicationWillLaunchOnDevice() {
+        
     }
     
 }
