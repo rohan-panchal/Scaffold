@@ -81,3 +81,114 @@ extension NSLayoutConstraint {
     }
     
 }
+
+extension NSLayoutConstraint {
+    
+    /**
+     Constrains a subview to be equal height and width to a superview.
+     
+     - parameter superView: A UIView object.
+     - parameter subView:   A UIView object.
+     
+     - returns: An array of NSLayoutConstraints.
+     */
+    public static func constrainSubViewToEqualFrames(superView: UIView,
+                                                     subView: UIView) -> [NSLayoutConstraint] {
+        let views = ["_superView": superView, "_subView": subView]
+        var constraints: [NSLayoutConstraint] = []
+        constraints.appendContentsOf(
+            NSLayoutConstraint.constraintsWithVisualFormat("V:|[_subView]|",
+                options: .AlignAllCenterX,
+                metrics: nil,
+                views: views))
+        constraints.appendContentsOf(NSLayoutConstraint.constraintsWithVisualFormat("H:|[_subView]|",
+            options: .AlignAllCenterY,
+            metrics: nil,
+            views: views))
+        return constraints
+    }
+    
+    /**
+     Constrains a subview's center to be equal to its superview.
+     
+     - parameter superView: A UIView object.
+     - parameter subView:   A UIView object.
+     
+     - returns: An array of NSLayoutConstraints.
+     */
+    public static func constrainSubViewToCenterWithinSuperview(superView: UIView, subView: UIView) -> [NSLayoutConstraint] {
+        let views = ["_superView": superView, "_subView": subView]
+        var constraints: [NSLayoutConstraint] = []
+        constraints.appendContentsOf(
+            NSLayoutConstraint.constraintsWithVisualFormat("V:[_superView]-(<=1)-[_subView]",
+                options: .AlignAllCenterX,
+                metrics: nil,
+                views: views))
+        constraints.appendContentsOf(
+            NSLayoutConstraint.constraintsWithVisualFormat("H:[_superView]-(<=1)-[_subView]",
+                options: .AlignAllCenterY,
+                metrics: nil,
+                views: views))
+        return constraints
+    }
+    
+    /**
+     Creates an NSLayoutConstraint equating the Height attribute of both the first and second view with a multiplier and a constant.
+     
+     - parameter firstView:  A UIView.
+     - parameter secondView: A UIView.
+     - parameter multiplier: A CGFloat.
+     - parameter constant:   A CGFloat.
+     
+     - returns: An NSLayoutConstraint object.
+     */
+    public static func constrainToEqualHeights(firstView: UIView,
+                                               secondView: UIView,
+                                               multiplier: CGFloat,
+                                               constant: CGFloat) -> NSLayoutConstraint {
+        return constraintForEqualAttribute(firstView, secondView: secondView, attribute: .Height, multiplier: multiplier, constant: constant)
+    }
+    
+    /**
+     Creates an NSLayoutConstraint equating the Width attribute of both the first and second view with a multiplier and a constant.
+     
+     - parameter firstView:  A UIView.
+     - parameter secondView: A UIView.
+     - parameter multiplier: A CGFloat.
+     - parameter constant:   A CGFloat.
+     
+     - returns: An NSLayoutConstraint object.
+     */
+    public static func constrainToEqualWidths(firstView: UIView,
+                                              secondView: UIView,
+                                              multiplier: CGFloat,
+                                              constant: CGFloat) -> NSLayoutConstraint {
+        return constraintForEqualAttribute(firstView, secondView: secondView, attribute: .Width, multiplier: multiplier, constant: constant)
+    }
+    
+    /**
+     Creates an NSLayoutConstraint equating a specific attribute of both the first and second view with a multiplier and a constant.
+     
+     - parameter firstView:  A UIView.
+     - parameter secondView: A UIView.
+     - parameter attribute:  An NSLayoutAttribute.
+     - parameter multiplier: A CGFloat.
+     - parameter constant:   A CGFloat.
+     
+     - returns: An NSLayoutConstraint object.
+     */
+    public static func constraintForEqualAttribute(firstView: UIView,
+                                                   secondView: UIView,
+                                                   attribute: NSLayoutAttribute,
+                                                   multiplier: CGFloat,
+                                                   constant: CGFloat) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: firstView,
+                                  attribute: attribute,
+                                  relatedBy: .Equal,
+                                  toItem: secondView,
+                                  attribute: attribute,
+                                  multiplier: multiplier,
+                                  constant: constant)
+    }
+    
+}
