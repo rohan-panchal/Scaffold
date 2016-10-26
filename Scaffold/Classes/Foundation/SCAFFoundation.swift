@@ -11,7 +11,11 @@ import Foundation
 public struct Platform {
     
     public static var iPhone: Bool {
-        return TARGET_OS_IPHONE != 0
+        return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone
+    }
+    
+    public static var iPad: Bool {
+        return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad
     }
     
     public static var iOS: Bool {
@@ -31,3 +35,4 @@ public struct Platform {
     }
     
 }
+
