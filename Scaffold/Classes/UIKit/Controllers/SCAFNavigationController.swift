@@ -28,10 +28,30 @@ public class SCAFProgressNavigationController: SCAFNavigationController {
     
     public lazy var progressView: UIProgressView = UIProgressView(progressViewStyle: .Bar)
     
+    public var isUpdatingProgress: Bool {
+        get {
+            return self.updatingProgress
+        }
+    }
+    
+    private var updatingProgress: Bool = false {
+        didSet {
+            self.resetProgress()
+        }
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         self.addProgressView()
+    }
+    
+}
+
+extension SCAFProgressNavigationController {
+    
+    public func cancelProgressUpdate() {
+        self.resetProgress()
     }
     
 }
@@ -96,30 +116,61 @@ extension SCAFProgressNavigationController {
     
     public func resetProgress(animated: Bool = false) {
         self.setProgress(0.0, animated: animated)
+        self.updatingProgress = false
     }
     
     public func progressAnimationBlock(resetOnCompletion: Bool = true,
                                        work: ((updateProgress: ((progress: Float) -> Void), reset: (() -> Void)) -> Void),
                                        completion: (() -> Void)) {
         
+        self.updatingProgress = true
+        
         work(updateProgress: { (progress) in
-            self.setProgress(progress, animated: true, completion: {
-                if progress == 1.0 {
-                    
-                    //Adds a delay after progress bar is filled to call completion().
-                    let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
-                    dispatch_after(delayTime, dispatch_get_main_queue(), {
-                        completion()
-                        if resetOnCompletion {
-                            self.resetProgress()
-                        }
-                    })
-                }
-            })
+            
+            if self.isUpdatingProgress {
+                self.setProgress(progress, animated: true, completion: {
+                    if progress == 1.0 {
+                        
+                        //Adds a delay after progress bar is filled to call completion().
+                        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
+                        dispatch_after(delayTime, dispatch_get_main_queue(), {
+                            completion()
+                            if resetOnCompletion {
+                                self.resetProgress()
+                            }
+                        })
+                    }
+                })
+            }
+            
         }) {
             self.resetProgress()
         }
         
+    }
+    
+}
+
+extension SCAFProgressNavigationController {
+    
+    public override func popViewControllerAnimated(animated: Bool) -> UIViewController? {
+        self.resetProgress()
+        return super.popViewControllerAnimated(animated)
+    }
+    
+    public override func popToRootViewControllerAnimated(animated: Bool) -> [UIViewController]? {
+        self.resetProgress()
+        return super.popToRootViewControllerAnimated(animated)
+    }
+    
+    public override func popToViewController(viewController: UIViewController, animated: Bool) -> [UIViewController]? {
+        self.resetProgress()
+        return super.popToViewController(viewController, animated: animated)
+    }
+    
+    public override func pushViewController(viewController: UIViewController, animated: Bool) {
+        self.resetProgress()
+        super.pushViewController(viewController, animated: animated)
     }
     
 }
