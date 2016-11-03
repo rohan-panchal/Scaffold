@@ -34,11 +34,7 @@ public class SCAFProgressNavigationController: SCAFNavigationController {
         }
     }
     
-    private var updatingProgress: Bool = false {
-        didSet {
-            self.resetProgress()
-        }
-    }
+    private var updatingProgress: Bool = false
     
     public override func viewDidLoad() {
         super.viewDidLoad()
