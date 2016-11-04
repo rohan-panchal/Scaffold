@@ -34,7 +34,7 @@ extension NSError {
         return NSError(domain: domain, code: code, userInfo: userInfoDict)
     }
     
-    public func builder() -> NSErrorBuilder {
+    public class func builder() -> NSErrorBuilder {
         return NSErrorBuilder()
     }
     
@@ -51,6 +51,9 @@ public class NSErrorBuilder {
     private var localizedFailureReason: String?
     private var localizedRecoverySuggestion: String?
     private var localizedRecoveryOptions: [String]?
+    
+    public init() {
+    }
 
     /**
      Generates an NSErrorBuilder object.
