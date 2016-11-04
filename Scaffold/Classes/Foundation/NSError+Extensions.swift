@@ -40,6 +40,8 @@ extension NSError {
     
 }
 
+// MARK: - NSErrorBuilder
+
 public class NSErrorBuilder {
     
     private var domain: String?
@@ -49,7 +51,12 @@ public class NSErrorBuilder {
     private var localizedFailureReason: String?
     private var localizedRecoverySuggestion: String?
     private var localizedRecoveryOptions: [String]?
-    
+
+    /**
+     Generates an NSErrorBuilder object.
+     
+     - returns: An NSErrorBuilder object.
+     */
     public func error() -> NSError? {
         
         guard let domain = self.domain else {
