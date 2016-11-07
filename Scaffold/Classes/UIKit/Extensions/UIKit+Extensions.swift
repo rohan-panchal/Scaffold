@@ -66,7 +66,7 @@ extension UIView {
         view.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
         view.tintColor = tintColor
         
-        return view as! T
+        return view
     }
     
 }
@@ -150,7 +150,7 @@ extension UIButton {
         
         button.titleLabel?.font = font
         
-        return button as! T
+        return button
     }
     
 }
@@ -220,7 +220,7 @@ extension UILabel {
         label.font = font
         label.numberOfLines = numberOfLines
         
-        return label as! T
+        return label 
     }
     
 }
@@ -270,7 +270,7 @@ extension UITextField {
         textField.textColor = textColor
         textField.secureTextEntry = secureTextEntry
         
-        return textField as! T
+        return textField 
     }
     
 }

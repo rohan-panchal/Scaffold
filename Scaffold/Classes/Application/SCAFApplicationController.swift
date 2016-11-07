@@ -34,7 +34,11 @@ extension SCAFApplicationController: UIApplicationDelegate {
             
             self.window?.makeKeyAndVisible()
         } catch let error as NSError {
-            NSLog("Error reason:\(error.localizedFailureReason)")
+            if let failureReaseon = error.localizedFailureReason {
+                NSLog("Window setup error:\(failureReaseon)")
+            } else {
+                NSLog("Window setup error")
+            }
             return false
         }
         
@@ -54,11 +58,9 @@ extension SCAFApplicationController: UIApplicationDelegate {
 extension SCAFApplicationController {
     
     public func applicationWillLaunchInSimulator() {
-        
     }
     
     public func applicationWillLaunchOnDevice() {
-        
     }
     
 }

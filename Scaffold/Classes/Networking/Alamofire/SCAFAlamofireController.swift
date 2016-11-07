@@ -55,7 +55,7 @@ public class SCAFAlamofireController: SCAFNetworkControllerNode {
             self.reachabilityManager?.startListening()
             try super.start()
         } catch let error as NSError {
-            // TODO: Log Error.
+            NSLog(error.description)
         }
     }
     
@@ -64,7 +64,7 @@ public class SCAFAlamofireController: SCAFNetworkControllerNode {
             self.reachabilityManager?.stopListening()
             try super.stop()
         } catch let error as NSError {
-            // TODO: Log Error.
+            NSLog(error.description)
         }
     }
 
