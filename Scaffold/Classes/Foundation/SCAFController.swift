@@ -46,3 +46,28 @@ public class SCAFControllerNode: NSObject, SCAFController {
     }
     
 }
+
+public class SCAFControllerCascade: SCAFControllerNode {
+    
+    public var controllers: [SCAFController] = []
+    
+    
+    public init(controllers: [SCAFController] = []) {
+        super.init()
+    }
+    
+    public override func start() throws {
+        self.status = .Initializing
+        for controller in self.controllers {
+            try controller.start()
+        }
+        self.status = .Online
+    }
+    
+    public override func stop() throws {
+        for controller in self.controllers {
+            try controller.stop()
+        }
+    }
+    
+}
