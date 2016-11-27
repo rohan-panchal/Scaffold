@@ -54,6 +54,7 @@ public class SCAFControllerCascade: SCAFControllerNode {
     
     public init(controllers: [SCAFController] = []) {
         super.init()
+        self.controllers = controllers
     }
     
     public override func start() throws {
