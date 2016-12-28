@@ -8,6 +8,14 @@
 
 import Foundation
 
+/**
+ A value denoting specific environments.
+ 
+ - offline:      Offline status.
+ - initializing: Initializing status.
+ - repairing:    Repairing status.
+ - online:       Online status.
+ */
 public enum SCAFControllerStatus: Int {
     case offline
     case initializing
@@ -15,6 +23,9 @@ public enum SCAFControllerStatus: Int {
     case online
 }
 
+/**
+ Defines the method interface for a SCAFController.
+ */
 public protocol SCAFController {
     
     var name: String { get }
@@ -27,6 +38,9 @@ public protocol SCAFController {
     
 }
 
+/**
+ A SCAFController implementation.
+ */
 open class SCAFControllerNode: NSObject, SCAFController {
     
     open var name: String {
@@ -47,10 +61,12 @@ open class SCAFControllerNode: NSObject, SCAFController {
     
 }
 
+/**
+ A cascade of SCAFController types.
+ */
 open class SCAFControllerCascade: SCAFControllerNode {
     
     open var controllers: [SCAFController] = []
-    
     
     public init(controllers: [SCAFController] = []) {
         super.init()
