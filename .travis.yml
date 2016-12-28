@@ -9,6 +9,5 @@ podfile: Example/Podfile
 before_install:
 - gem install cocoapods # Since Travis is not always on latest version
 - pod install --project-directory=Example
-script:
-- set -o pipefail && xcodebuild test -workspace Example/Scaffold.xcworkspace -scheme Scaffold-Example -sdk iphonesimulator10.2 -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.2' ONLY_ACTIVE_ARCH=NO | xcpretty
+script: — xcodebuild clean build -workspace Scaffold.xcworkspace -scheme Scaffold-Example -destination “platform=iOS Simulator,name=iPhone 6S”
 - pod lib lint
