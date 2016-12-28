@@ -14,7 +14,7 @@ public enum SCAFNetworkControllerReachabilityStatus {
     case reachable
 }
 
-public protocol SCAFNetworkedController: SCAFController {
+public protocol SCAFNetworkedController: Controller {
     
     var reachabilityStatus: SCAFNetworkControllerReachabilityStatus { get }
     var reachabilityHost: String? { get }
@@ -24,7 +24,7 @@ public protocol SCAFNetworkedController: SCAFController {
     
 }
 
-open class SCAFNetworkControllerNode: SCAFControllerNode, SCAFNetworkedController {
+open class SCAFNetworkControllerNode: ControllerNode, SCAFNetworkedController {
     
     open var reachabilityStatus: SCAFNetworkControllerReachabilityStatus {
         return .unknown

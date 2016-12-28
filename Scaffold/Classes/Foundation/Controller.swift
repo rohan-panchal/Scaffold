@@ -1,5 +1,5 @@
 //
-//  SCAFController.swift
+//  Controller.swift
 //  Scaffold
 //
 //  Created by Rohan Panchal on 9/3/16.
@@ -16,7 +16,7 @@ import Foundation
  - repairing:    Repairing status.
  - online:       Online status.
  */
-public enum SCAFControllerStatus: Int {
+public enum ControllerStatus: Int {
     case offline
     case initializing
     case repairing
@@ -26,11 +26,11 @@ public enum SCAFControllerStatus: Int {
 /**
  Defines the method interface for a SCAFController.
  */
-public protocol SCAFController {
+public protocol Controller {
     
     var name: String { get }
     
-    var status: SCAFControllerStatus { get }
+    var status: ControllerStatus { get }
     
     func start() throws
     
@@ -39,9 +39,9 @@ public protocol SCAFController {
 }
 
 /**
- A SCAFController implementation.
+ A Controller implementation.
  */
-open class SCAFControllerNode: NSObject, SCAFController {
+open class ControllerNode: NSObject, Controller {
     
     open var name: String {
         get {
@@ -49,7 +49,7 @@ open class SCAFControllerNode: NSObject, SCAFController {
         }
     }
     
-    open var status: SCAFControllerStatus = .offline
+    open var status: ControllerStatus = .offline
     
     open func start() throws {
         self.status = .online
@@ -62,13 +62,13 @@ open class SCAFControllerNode: NSObject, SCAFController {
 }
 
 /**
- A cascade of SCAFController types.
+ A cascade of Controller types.
  */
-open class SCAFControllerCascade: SCAFControllerNode {
+open class ControllerCascade: ControllerNode {
     
-    open var controllers: [SCAFController] = []
+    open var controllers: [Controller] = []
     
-    public init(controllers: [SCAFController] = []) {
+    public init(controllers: [Controller] = []) {
         super.init()
         self.controllers = controllers
     }
