@@ -1,5 +1,5 @@
 //
-//  SCAFHTTPNetworking.swift
+//  HTTPNetworking.swift
 //  Scaffold
 //
 //  Created by Rohan Panchal on 9/6/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public enum SCAFHTTPMethod {
+public enum HTTPMethod {
     case get
     case post
     case put
@@ -16,7 +16,7 @@ public enum SCAFHTTPMethod {
     case delete
 }
 
-public enum SCAFHTTPEncoding {
+public enum HTTPEncoding {
     case url
     case urlEncoded
     case json

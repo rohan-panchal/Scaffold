@@ -1,5 +1,5 @@
 //
-//  SCAFAlamofireController.swift
+//  AlamofireController.swift
 //  Scaffold
 //
 //  Created by Panchal, Rohan on 9/6/16.
@@ -10,20 +10,20 @@ import Alamofire
 
 extension NetworkReachabilityManager.NetworkReachabilityStatus {
     
-    public func scafReachabilityStatus() -> SCAFNetworkControllerReachabilityStatus {
+    public func scafReachabilityStatus() -> NetworkControllerReachabilityStatus {
         switch self {
         case .unknown:
-            return SCAFNetworkControllerReachabilityStatus.unknown
+            return NetworkControllerReachabilityStatus.unknown
         case .notReachable:
-            return SCAFNetworkControllerReachabilityStatus.unreachable
+            return NetworkControllerReachabilityStatus.unreachable
         case .reachable:
-            return SCAFNetworkControllerReachabilityStatus.reachable
+            return NetworkControllerReachabilityStatus.reachable
         }
     }
     
 }
 
-open class SCAFAlamofireController: SCAFNetworkControllerNode {
+open class AlamofireController: NetworkControllerNode {
     
     open lazy var manager: SessionManager = {
         let manager = SessionManager()
@@ -39,7 +39,7 @@ open class SCAFAlamofireController: SCAFNetworkControllerNode {
         return nil
     }()
     
-    override open var reachabilityStatus: SCAFNetworkControllerReachabilityStatus {
+    override open var reachabilityStatus: NetworkControllerReachabilityStatus {
         if let reachability =  self.reachabilityManager?.networkReachabilityStatus {
             return reachability.scafReachabilityStatus()
         }
