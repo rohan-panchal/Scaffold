@@ -1,5 +1,5 @@
 //
-//  SCAFEnvironment.swift
+//  Environment.swift
 //  Scaffold
 //
 //  Created by Panchal, Rohan on 9/1/16.
@@ -16,7 +16,7 @@ import Foundation
  - staging:     For Production-like Staging environments.
  - production:  For Production builds.
  */
-public enum SCAFEnvironmentType {
+public enum EnvironmentType {
     case test
     case development
     case staging
@@ -24,27 +24,27 @@ public enum SCAFEnvironmentType {
 }
 
 /// Manages a Singleton Environment
-open class SCAFEnvironmentManager {
+open class EnvironmentManager {
     
-    open static let sharedManager: SCAFEnvironmentManager = SCAFEnvironmentManager()
+    open static let sharedManager: EnvironmentManager = EnvironmentManager()
     
-    open var environment: SCAFEnvironmentType {
+    open var environment: EnvironmentType {
         get {
             return self.internalEnvironment
         }
     }
-    var internalEnvironment: SCAFEnvironmentType
+    var internalEnvironment: EnvironmentType
     
     /**
      Initializes the Singleton environment.
      
      - parameter environment: An EnvironmentType value.
      */
-    open class func initializeEnvironment(_ environment: SCAFEnvironmentType = .development) {
+    open class func initializeEnvironment(_ environment: EnvironmentType = .development) {
         sharedManager.internalEnvironment = environment
     }
     
-    init(environment: SCAFEnvironmentType = .development) {
+    init(environment: EnvironmentType = .development) {
         self.internalEnvironment = environment
     }
     
