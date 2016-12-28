@@ -1,5 +1,5 @@
 //
-//  SCAFFoundation.swift
+//  Foundation.swift
 //  Pods
 //
 //  Created by Rohan Panchal on 9/26/16.
