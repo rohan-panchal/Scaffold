@@ -13,6 +13,8 @@ enum SCAFApplicationError: Error {
     case invalidLaunchURL
 }
 
+// MARK: - Application Controller
+
 open class SCAFApplicationController: UIResponder {
     
     open var window: UIWindow?
@@ -24,6 +26,8 @@ open class SCAFApplicationController: UIResponder {
     }
     
 }
+
+// MARK: - Application Delegate
 
 extension SCAFApplicationController: UIApplicationDelegate {
     
@@ -55,19 +59,33 @@ extension SCAFApplicationController: UIApplicationDelegate {
     
 }
 
+// MARK: - Context Callbacks
+
 extension SCAFApplicationController {
     
+    /**
+     Callback method which gets called when the application is running on an iOS Simulator.
+     */
     public func applicationWillLaunchInSimulator() {
     }
     
+    /**
+    Callback method which gets called when the application is running on an iOS Device.
+     */
     public func applicationWillLaunchOnDevice() {
     }
     
 }
 
 // MARK: - Window Setup Options
+
 extension SCAFApplicationController {
     
+    /**
+     Sets up the application UIWindow.
+     
+     @throws SCAFApplicationError.invalidInitialViewController.
+     */
     fileprivate func setupWindow() throws {
         if self.window == nil {
             self.window = UIWindow(frame: UIScreen.main.bounds)
@@ -83,8 +101,12 @@ extension SCAFApplicationController {
 }
 
 // MARK: - Launch Options
+
 extension SCAFApplicationController {
     
+    /**
+     Processes the launch option arguments provided on launch of the application.
+     */
     fileprivate func processLaunchOptions(_ application: UIApplication, launchOptions: [AnyHashable: Any]?) {
         guard let launchOptions = launchOptions else {
             return
@@ -95,7 +117,10 @@ extension SCAFApplicationController {
         }
     }
     
-    fileprivate func processLaunchURL(_ launchURL: URL) {
+    /**
+     Callback method which gets called when the application is launched with a URL.
+     */
+    open func processLaunchURL(_ launchURL: URL) {
         // TODO: Process Launch URL.
     }
     
