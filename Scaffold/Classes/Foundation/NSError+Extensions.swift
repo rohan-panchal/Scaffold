@@ -56,9 +56,9 @@ open class NSErrorBuilder {
     }
 
     /**
-     Generates an NSErrorBuilder object.
+     Generates an NSError object.
      
-     - returns: An NSErrorBuilder object.
+     @return An NSError object.
      */
     open func error() -> NSError? {
         
@@ -83,31 +83,49 @@ open class NSErrorBuilder {
 
 extension NSErrorBuilder {
     
+    /**
+     Sets the domain string of the error.
+     */
     public func setDomain(_ domain: String) -> NSErrorBuilder {
         self.domain = domain
         return self
     }
     
+    /**
+     Sets the code number of the error.
+     */
     public func setCode(_ code: Int) -> NSErrorBuilder {
         self.code = code
         return self
     }
     
+    /**
+     Sets the localized description string of the error.
+     */
     public func setLocalizedDescription(_ localizedDescription: String) -> NSErrorBuilder {
         self.localizedDescription = localizedDescription
         return self
     }
     
+    /**
+     Sets the localized failure reason string of the error.
+     */
     public func setLocalizedFailureReason(_ localizedFailureReason: String) -> NSErrorBuilder {
         self.localizedFailureReason = localizedFailureReason
         return self
     }
     
+    /**
+     Sets the localized recovery suggestion string of the error.
+     */
     public func setLocalizedRecoverySuggestion(_ localizedRecoverySuggestion: String) -> NSErrorBuilder {
         self.localizedRecoverySuggestion = localizedRecoverySuggestion
         return self
     }
     
+    /**
+     Sets the localized recovery options string array of the error.
+     */
     public func setLocalizedRecoveryOptions(_ localizedRecoveryOptions: [String]) -> NSErrorBuilder {
         self.localizedRecoveryOptions = localizedRecoveryOptions
         return self
