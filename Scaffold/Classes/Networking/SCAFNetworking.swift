@@ -9,9 +9,9 @@
 import Foundation
 
 public enum SCAFNetworkControllerReachabilityStatus {
-    case Unknown
-    case Unreachable
-    case Reachable
+    case unknown
+    case unreachable
+    case reachable
 }
 
 public protocol SCAFNetworkedController: SCAFController {
@@ -24,13 +24,13 @@ public protocol SCAFNetworkedController: SCAFController {
     
 }
 
-public class SCAFNetworkControllerNode: SCAFControllerNode, SCAFNetworkedController {
+open class SCAFNetworkControllerNode: SCAFControllerNode, SCAFNetworkedController {
     
-    public var reachabilityStatus: SCAFNetworkControllerReachabilityStatus {
-        return .Unknown
+    open var reachabilityStatus: SCAFNetworkControllerReachabilityStatus {
+        return .unknown
     }
-    public var reachabilityHost: String?
-    public var host: String
+    open var reachabilityHost: String?
+    open var host: String
     
     public required init(host: String, reachabilityHost: String?) {
         self.reachabilityHost = reachabilityHost

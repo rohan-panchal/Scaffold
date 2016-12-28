@@ -14,13 +14,13 @@ class EnvironmentTestCase: XCTestCase {
     func testEnvironmentManagerInitializeEnvironmentDefault() {
         SCAFEnvironmentManager.initializeEnvironment()
         
-        XCTAssert(SCAFEnvironmentManager.sharedManager.environment == .Development)
+        XCTAssert(SCAFEnvironmentManager.sharedManager.environment == .development)
     }
     
     func testEnvironmentManagerInitializeEnvironmentNonDefaultValue() {
-        SCAFEnvironmentManager.initializeEnvironment(.Production)
+        SCAFEnvironmentManager.initializeEnvironment(.production)
         
-        XCTAssert(SCAFEnvironmentManager.sharedManager.environment == .Production)
+        XCTAssert(SCAFEnvironmentManager.sharedManager.environment == .production)
     }
     
 }

@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class SCAFCollectionReusableView: UICollectionReusableView {
+open class SCAFCollectionReusableView: UICollectionReusableView {
     
-    public static func defaultReuseIdentifer() -> String {
+    open static func defaultReuseIdentifer() -> String {
         return self.className
     }
     
-    public static func defaultHeight() -> CGFloat {
+    open static func defaultHeight() -> CGFloat {
         return 44
     }
     
@@ -32,7 +32,7 @@ public class SCAFCollectionReusableView: UICollectionReusableView {
 
 extension SCAFCollectionReusableView: UIScaffold {
     
-    private func setup() {
+    fileprivate func setup() {
         self.addSubviews(self.initialSubviews())
         self.setupConstraints(self)
         self.setupActions()
@@ -44,7 +44,7 @@ extension SCAFCollectionReusableView: UIScaffold {
         return []
     }
     
-    public func setupConstraints(rootView: UIView) {
+    public func setupConstraints(_ rootView: UIView) {
     }
     
     public func setupActions() {
@@ -56,7 +56,7 @@ extension SCAFCollectionReusableView: UIScaffold {
     public func setLocalizedCopy() {
     }
     
-    @objc public func notificationHandler(notification: NSNotification) {
+    @objc public func notificationHandler(_ notification: Notification) {
     }
     
     

@@ -8,50 +8,50 @@
 
 import UIKit
 
-public class SCAFModularViewController: SCAFViewController {
+open class SCAFModularViewController: SCAFViewController {
     
-    private lazy var longPressGestureRecognizer: UILongPressGestureRecognizer = {
+    fileprivate lazy var longPressGestureRecognizer: UILongPressGestureRecognizer = {
         let gestureRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressDetected))
         gestureRecognizer.minimumPressDuration = self.longPressMinimumTimeInterval()
         gestureRecognizer.delaysTouchesBegan = true
         return gestureRecognizer
     }()
     
-    public var topView: UIView!
-    public var centerView: UIView!
-    public var bottomView: UIView!
+    open var topView: UIView!
+    open var centerView: UIView!
+    open var bottomView: UIView!
     
-    private lazy var topViewTopSpacingConstraint: NSLayoutConstraint = {
+    fileprivate lazy var topViewTopSpacingConstraint: NSLayoutConstraint = {
         return NSLayoutConstraint(item: self.topView,
-                                  attribute: .Top,
-                                  relatedBy: .Equal,
+                                  attribute: .top,
+                                  relatedBy: .equal,
                                   toItem: self.topLayoutGuide,
-                                  attribute: .Bottom,
+                                  attribute: .bottom,
                                   multiplier: 1.0,
                                   constant: 0.0)
     }()
     
-    private lazy var topViewHeightConstraint: NSLayoutConstraint = {
+    fileprivate lazy var topViewHeightConstraint: NSLayoutConstraint = {
         return NSLayoutConstraint(item: self.topView,
-                                  attribute: .Height,
-                                  relatedBy: .Equal,
+                                  attribute: .height,
+                                  relatedBy: .equal,
                                   toItem: nil,
-                                  attribute: .NotAnAttribute,
+                                  attribute: .notAnAttribute,
                                   multiplier: 1.0,
                                   constant: self.initialTopViewHeight())
     }()
     
-    private lazy var bottomViewHeightConstraint: NSLayoutConstraint = {
+    fileprivate lazy var bottomViewHeightConstraint: NSLayoutConstraint = {
         return NSLayoutConstraint(item: self.bottomView,
-                                  attribute: .Height,
-                                  relatedBy: .Equal,
+                                  attribute: .height,
+                                  relatedBy: .equal,
                                   toItem: nil,
-                                  attribute: .NotAnAttribute,
+                                  attribute: .notAnAttribute,
                                   multiplier: 1.0,
                                   constant: self.initialBottomViewHeight())
     }()
     
-    public var topViewTopSpacing: CGFloat {
+    open var topViewTopSpacing: CGFloat {
         get {
             return self.topViewTopSpacingConstraint.constant
         }
@@ -60,7 +60,7 @@ public class SCAFModularViewController: SCAFViewController {
         }
     }
     
-    public var topViewHeight: CGFloat {
+    open var topViewHeight: CGFloat {
         get {
             return self.topViewHeightConstraint.constant
         }
@@ -69,7 +69,7 @@ public class SCAFModularViewController: SCAFViewController {
         }
     }
     
-    public var bottomViewHeight: CGFloat {
+    open var bottomViewHeight: CGFloat {
         get {
             return self.bottomViewHeightConstraint.constant
         }
@@ -78,8 +78,8 @@ public class SCAFModularViewController: SCAFViewController {
         }
     }
     
-    override public func initialSubviews() -> [UIView] {
-        self.edgesForExtendedLayout = UIRectEdge.None
+    override open func initialSubviews() -> [UIView] {
+        self.edgesForExtendedLayout = UIRectEdge()
         self.centerView = self.setupCenterView()
         self.topView = self.setupTopView()
         self.bottomView = self.setupBottomView()
@@ -92,23 +92,23 @@ public class SCAFModularViewController: SCAFViewController {
         return UIView.view()
     }
     
-    public func initialTopViewHeight() -> CGFloat {
+    open func initialTopViewHeight() -> CGFloat {
         return 0.0
     }
     
-    public func setupCenterView() -> UIView {
+    open func setupCenterView() -> UIView {
         return UIView.view()
     }
     
-    public func setupBottomView() -> UIView {
+    open func setupBottomView() -> UIView {
         return UIView.view()
     }
     
-    public func initialBottomViewHeight() -> CGFloat {
+    open func initialBottomViewHeight() -> CGFloat {
         return 0.0
     }
     
-    override public func setupConstraints(rootView: UIView) {
+    override open func setupConstraints(_ rootView: UIView) {
         super.setupConstraints(rootView)
         
         let views = ["_centerView": self.centerView,
@@ -117,20 +117,20 @@ public class SCAFModularViewController: SCAFViewController {
         
         self.centerView.translatesAutoresizingMaskIntoConstraints = false
         
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[_centerView]|",
-            options: NSLayoutFormatOptions.AlignmentMask,
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[_centerView]|",
+            options: NSLayoutFormatOptions.alignmentMask,
             metrics: nil,
             views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[_topView]|",
-            options: NSLayoutFormatOptions.AlignmentMask,
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[_topView]|",
+            options: NSLayoutFormatOptions.alignmentMask,
             metrics: nil,
             views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|[_bottomView]|",
-            options: NSLayoutFormatOptions.AlignmentMask,
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|[_bottomView]|",
+            options: NSLayoutFormatOptions.alignmentMask,
             metrics: nil,
             views: views))
-        self.view.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:[_topView][_centerView][_bottomView]|",
-            options: NSLayoutFormatOptions.AlignAllCenterX,
+        self.view.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[_topView][_centerView][_bottomView]|",
+            options: NSLayoutFormatOptions.alignAllCenterX,
             metrics: nil,
             views: views))
         
@@ -139,11 +139,11 @@ public class SCAFModularViewController: SCAFViewController {
         self.view.addConstraint(self.bottomViewHeightConstraint)
     }
     
-    override public func setupColorScheme() {
-        self.centerView.backgroundColor = UIColor.groupTableViewBackgroundColor()
+    override open func setupColorScheme() {
+        self.centerView.backgroundColor = UIColor.groupTableViewBackground
     }
     
-    override public func setupActions() {
+    override open func setupActions() {
         super.setupActions()
         
         if self.detectsLongPress() {
@@ -163,7 +163,7 @@ extension SCAFModularViewController {
         return 0.5
     }
     
-    @objc private func longPressDetected(gestureRecognizer: UILongPressGestureRecognizer) {
+    @objc fileprivate func longPressDetected(_ gestureRecognizer: UILongPressGestureRecognizer) {
     }
     
 }
@@ -176,16 +176,16 @@ extension SCAFModularViewController {
     
 }
 
-public class SCAFTableViewController: SCAFModularViewController {
+open class SCAFTableViewController: SCAFModularViewController {
     
-    public var tableView: UITableView!
+    open var tableView: UITableView!
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.registerTableViewCellIdentifiers(self.cellIdentifiers())
     }
 
-    public override func setupCenterView() -> UIView {
+    open override func setupCenterView() -> UIView {
         self.tableView = self.setupTableView()
         return self.tableView
     }
@@ -194,43 +194,43 @@ public class SCAFTableViewController: SCAFModularViewController {
         return UITableView()
     }
     
-    private func registerTableViewCellIdentifiers(identifiers: [String:AnyClass]) {
+    fileprivate func registerTableViewCellIdentifiers(_ identifiers: [String:AnyClass]) {
         for cellIdentifier in identifiers.keys {
-            self.tableView.registerClass(identifiers[cellIdentifier], forCellReuseIdentifier: cellIdentifier)
+            self.tableView.register(identifiers[cellIdentifier], forCellReuseIdentifier: cellIdentifier)
         }
     }
     
 }
 
-public class SCAFPlainTableViewController: SCAFTableViewController {
+open class SCAFPlainTableViewController: SCAFTableViewController {
     
     override func setupTableView() -> UITableView {
-        return UITableView(frame: self.view.frame, style: UITableViewStyle.Plain)
+        return UITableView(frame: self.view.frame, style: UITableViewStyle.plain)
     }
     
 }
 
-public class SCAFGroupedTableViewController: SCAFTableViewController {
+open class SCAFGroupedTableViewController: SCAFTableViewController {
     
     override func setupTableView() -> UITableView {
-        return UITableView(frame: self.view.frame, style: UITableViewStyle.Grouped)
+        return UITableView(frame: self.view.frame, style: UITableViewStyle.grouped)
     }
     
 }
 
-public class SCAFCollectionViewController: SCAFModularViewController {
+open class SCAFCollectionViewController: SCAFModularViewController {
     
-    public var collectionView: UICollectionView!
+    open var collectionView: UICollectionView!
     
-    public func headerCellIdentifiers()-> [String: AnyClass]? {
+    open func headerCellIdentifiers()-> [String: AnyClass]? {
         return nil
     }
     
-    public func footerCellIdentifiers()-> [String: AnyClass]? {
+    open func footerCellIdentifiers()-> [String: AnyClass]? {
         return nil
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         self.registerCollectionViewCellIdentifiers(self.cellIdentifiers())
         if let headerCellIdentifiers = self.headerCellIdentifiers() {
@@ -241,38 +241,38 @@ public class SCAFCollectionViewController: SCAFModularViewController {
         }
     }
     
-    public override func setupCenterView() -> UIView {
+    open override func setupCenterView() -> UIView {
         self.collectionView = self.setupCollectionView()
         return self.collectionView
     }
     
     func setupCollectionView() -> UICollectionView {
-        return UICollectionView(frame: CGRectZero, collectionViewLayout: self.setupCollectionViewLayout())
+        return UICollectionView(frame: CGRect.zero, collectionViewLayout: self.setupCollectionViewLayout())
     }
     
-    private func registerCollectionViewCellIdentifiers(identifiers: [String:AnyClass]) {
+    fileprivate func registerCollectionViewCellIdentifiers(_ identifiers: [String:AnyClass]) {
         for cellIdentifier in identifiers.keys {
-            self.collectionView.registerClass(identifiers[cellIdentifier], forCellWithReuseIdentifier: cellIdentifier)
+            self.collectionView.register(identifiers[cellIdentifier], forCellWithReuseIdentifier: cellIdentifier)
         }
     }
     
-    private func registerCollectionViewSupplementaryHeaderCellIdentifiers(identifiers: [String:AnyClass]) {
+    fileprivate func registerCollectionViewSupplementaryHeaderCellIdentifiers(_ identifiers: [String:AnyClass]) {
         for cellIdentifier in identifiers.keys {
-            self.collectionView.registerClass(identifiers[cellIdentifier],
+            self.collectionView.register(identifiers[cellIdentifier],
                                               forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                               withReuseIdentifier: cellIdentifier)
         }
     }
     
-    private func registerCollectionViewSupplementaryFooterCellIdentifiers(identifiers: [String:AnyClass]) {
+    fileprivate func registerCollectionViewSupplementaryFooterCellIdentifiers(_ identifiers: [String:AnyClass]) {
         for cellIdentifier in identifiers.keys {
-            self.collectionView.registerClass(identifiers[cellIdentifier],
+            self.collectionView.register(identifiers[cellIdentifier],
                                               forSupplementaryViewOfKind: UICollectionElementKindSectionFooter,
                                               withReuseIdentifier: cellIdentifier)
         }
     }
     
-    public func setupCollectionViewLayout() -> UICollectionViewLayout {
+    open func setupCollectionViewLayout() -> UICollectionViewLayout {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         layout.itemSize = CGSize(width: 100, height: 100)
@@ -283,18 +283,18 @@ public class SCAFCollectionViewController: SCAFModularViewController {
 
 extension SCAFCollectionViewController {
     
-    private override func longPressDetected(gestureRecognizer: UILongPressGestureRecognizer) {
-        let location: CGPoint = gestureRecognizer.locationInView(self.collectionView)
+    fileprivate override func longPressDetected(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        let location: CGPoint = gestureRecognizer.location(in: self.collectionView)
 
-        let indexPath = self.collectionView.indexPathForItemAtPoint(location)
+        let indexPath = self.collectionView.indexPathForItem(at: location)
         
         if let index = indexPath,
-            let cell = self.collectionView.cellForItemAtIndexPath(index) {
+            let cell = self.collectionView.cellForItem(at: index) {
             self.didLongPressOnCell(cell, atIndexPath: indexPath)
         }
     }
     
-    public func didLongPressOnCell(cell: UICollectionViewCell?, atIndexPath indexPath: NSIndexPath?) {
+    public func didLongPressOnCell(_ cell: UICollectionViewCell?, atIndexPath indexPath: IndexPath?) {
         
     }
     

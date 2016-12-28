@@ -10,16 +10,16 @@ import Foundation
 
 extension Optional {
     
-    func doIfNonNil(value: Wrapped?, handler: ((value: Wrapped) -> Void)) {
+    func doIfNonNil(_ value: Wrapped?, handler: ((_ value: Wrapped) -> Void)) {
         if let value = self {
-            handler(value: value)
+            handler(value)
         }
     }
     
 }
 
-public func doIfNonNil<T>(value: T?, handler: ((value: T) -> Void)) {
+public func doIfNonNil<T>(_ value: T?, handler: ((_ value: T) -> Void)) {
     if let value = value {
-        handler(value: value)
+        handler(value)
     }
 }

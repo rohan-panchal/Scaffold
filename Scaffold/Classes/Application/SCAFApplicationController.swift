@@ -8,18 +8,18 @@
 
 import UIKit
 
-enum SCAFApplicationError: ErrorType {
-    case InvalidInitialViewController
-    case InvalidLaunchURL
+enum SCAFApplicationError: Error {
+    case invalidInitialViewController
+    case invalidLaunchURL
 }
 
-public class SCAFApplicationController: UIResponder {
+open class SCAFApplicationController: UIResponder {
     
-    public var window: UIWindow?
+    open var window: UIWindow?
     
-    public var environment: SCAFEnvironmentType = .Development
+    open var environment: SCAFEnvironmentType = .development
     
-    public func initialViewController() -> UIViewController? {
+    open func initialViewController() -> UIViewController? {
         return nil
     }
     
@@ -27,7 +27,7 @@ public class SCAFApplicationController: UIResponder {
 
 extension SCAFApplicationController: UIApplicationDelegate {
     
-    public func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
+    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         do {
             try self.setupWindow()
@@ -68,13 +68,13 @@ extension SCAFApplicationController {
 // MARK: - Window Setup Options
 extension SCAFApplicationController {
     
-    private func setupWindow() throws {
+    fileprivate func setupWindow() throws {
         if self.window == nil {
-            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            self.window = UIWindow(frame: UIScreen.main.bounds)
         }
         
         guard let initialViewController = self.initialViewController() else {
-            throw SCAFApplicationError.InvalidInitialViewController
+            throw SCAFApplicationError.invalidInitialViewController
         }
         
         self.window?.rootViewController = initialViewController
@@ -85,17 +85,17 @@ extension SCAFApplicationController {
 // MARK: - Launch Options
 extension SCAFApplicationController {
     
-    private func processLaunchOptions(application: UIApplication, launchOptions: [NSObject: AnyObject]?) {
+    fileprivate func processLaunchOptions(_ application: UIApplication, launchOptions: [AnyHashable: Any]?) {
         guard let launchOptions = launchOptions else {
             return
         }
         
-        if let launchURL = launchOptions[UIApplicationLaunchOptionsURLKey] as? NSURL {
+        if let launchURL = launchOptions[UIApplicationLaunchOptionsKey.url] as? URL {
             self.processLaunchURL(launchURL)
         }
     }
     
-    private func processLaunchURL(launchURL: NSURL) {
+    fileprivate func processLaunchURL(_ launchURL: URL) {
         // TODO: Process Launch URL.
     }
     

@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class SCAFView: UIView {
+open class SCAFView: UIView {
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
@@ -24,7 +24,7 @@ public class SCAFView: UIView {
 
 extension SCAFView: UIScaffold {
     
-    private func setup() {
+    fileprivate func setup() {
         self.addSubviews(self.initialSubviews())
         self.setupConstraints(self)
         self.setupActions()
@@ -36,7 +36,7 @@ extension SCAFView: UIScaffold {
         return []
     }
     
-    public func setupConstraints(rootView: UIView) {
+    public func setupConstraints(_ rootView: UIView) {
     }
     
     public func setupActions() {
@@ -48,7 +48,7 @@ extension SCAFView: UIScaffold {
     public func setLocalizedCopy() {
     }
     
-    @objc public func notificationHandler(notification: NSNotification) {
+    @objc public func notificationHandler(_ notification: Notification) {
     }
     
 }

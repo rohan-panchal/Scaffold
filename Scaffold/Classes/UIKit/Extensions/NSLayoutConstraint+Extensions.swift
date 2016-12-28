@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class NSLayoutConstraintBuilder: NSObject {
+open class NSLayoutConstraintBuilder: NSObject {
     
     var firstItem: AnyObject?
     var firstAttribute: NSLayoutAttribute?
@@ -18,42 +18,42 @@ public class NSLayoutConstraintBuilder: NSObject {
     var multiplier: CGFloat = 1.0
     var constant: CGFloat = 0.0
     
-    public func firstItem(firstItem: AnyObject) -> NSLayoutConstraintBuilder {
+    open func firstItem(_ firstItem: AnyObject) -> NSLayoutConstraintBuilder {
         self.firstItem = firstItem
         return self
     }
     
-    public func firstAttribute(attribute: NSLayoutAttribute) -> NSLayoutConstraintBuilder {
+    open func firstAttribute(_ attribute: NSLayoutAttribute) -> NSLayoutConstraintBuilder {
         self.firstAttribute = attribute
         return self
     }
     
-    public func relatedBy(relation: NSLayoutRelation) -> NSLayoutConstraintBuilder {
+    open func relatedBy(_ relation: NSLayoutRelation) -> NSLayoutConstraintBuilder {
         self.relation = relation
         return self
     }
     
-    public func secondItem(secondItem: AnyObject) -> NSLayoutConstraintBuilder {
+    open func secondItem(_ secondItem: AnyObject) -> NSLayoutConstraintBuilder {
         self.secondItem = secondItem
         return self
     }
     
-    public func secondAttribute(attribute: NSLayoutAttribute) -> NSLayoutConstraintBuilder {
+    open func secondAttribute(_ attribute: NSLayoutAttribute) -> NSLayoutConstraintBuilder {
         self.secondAttribute = attribute
         return self
     }
     
-    public func multiplier(value: CGFloat) -> NSLayoutConstraintBuilder {
+    open func multiplier(_ value: CGFloat) -> NSLayoutConstraintBuilder {
         self.multiplier = value
         return self
     }
     
-    public func constant(value: CGFloat) -> NSLayoutConstraintBuilder {
+    open func constant(_ value: CGFloat) -> NSLayoutConstraintBuilder {
         self.constant = value
         return self
     }
     
-    public func constraint() -> NSLayoutConstraint? {
+    open func constraint() -> NSLayoutConstraint? {
         
         guard let firstItem = self.firstItem,
             let firstAttribute = self.firstAttribute,
@@ -92,17 +92,17 @@ extension NSLayoutConstraint {
      
      - returns: An array of NSLayoutConstraints.
      */
-    public static func constrainSubViewToEqualFrames(superView: UIView,
+    public static func constrainSubViewToEqualFrames(_ superView: UIView,
                                                      subView: UIView) -> [NSLayoutConstraint] {
         let views = ["_superView": superView, "_subView": subView]
         var constraints: [NSLayoutConstraint] = []
-        constraints.appendContentsOf(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:|[_subView]|",
-                options: .AlignAllCenterX,
+        constraints.append(
+            contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:|[_subView]|",
+                options: .alignAllCenterX,
                 metrics: nil,
                 views: views))
-        constraints.appendContentsOf(NSLayoutConstraint.constraintsWithVisualFormat("H:|[_subView]|",
-            options: .AlignAllCenterY,
+        constraints.append(contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:|[_subView]|",
+            options: .alignAllCenterY,
             metrics: nil,
             views: views))
         return constraints
@@ -116,17 +116,17 @@ extension NSLayoutConstraint {
      
      - returns: An array of NSLayoutConstraints.
      */
-    public static func constrainSubViewToCenterWithinSuperview(superView: UIView, subView: UIView) -> [NSLayoutConstraint] {
+    public static func constrainSubViewToCenterWithinSuperview(_ superView: UIView, subView: UIView) -> [NSLayoutConstraint] {
         let views = ["_superView": superView, "_subView": subView]
         var constraints: [NSLayoutConstraint] = []
-        constraints.appendContentsOf(
-            NSLayoutConstraint.constraintsWithVisualFormat("V:[_superView]-(<=1)-[_subView]",
-                options: .AlignAllCenterX,
+        constraints.append(
+            contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "V:[_superView]-(<=1)-[_subView]",
+                options: .alignAllCenterX,
                 metrics: nil,
                 views: views))
-        constraints.appendContentsOf(
-            NSLayoutConstraint.constraintsWithVisualFormat("H:[_superView]-(<=1)-[_subView]",
-                options: .AlignAllCenterY,
+        constraints.append(
+            contentsOf: NSLayoutConstraint.constraints(withVisualFormat: "H:[_superView]-(<=1)-[_subView]",
+                options: .alignAllCenterY,
                 metrics: nil,
                 views: views))
         return constraints
@@ -142,11 +142,11 @@ extension NSLayoutConstraint {
      
      - returns: An NSLayoutConstraint object.
      */
-    public static func constrainToEqualHeights(firstView: UIView,
+    public static func constrainToEqualHeights(_ firstView: UIView,
                                                secondView: UIView,
                                                multiplier: CGFloat,
                                                constant: CGFloat) -> NSLayoutConstraint {
-        return constraintForEqualAttribute(firstView, secondView: secondView, attribute: .Height, multiplier: multiplier, constant: constant)
+        return constraintForEqualAttribute(firstView, secondView: secondView, attribute: .height, multiplier: multiplier, constant: constant)
     }
     
     /**
@@ -159,11 +159,11 @@ extension NSLayoutConstraint {
      
      - returns: An NSLayoutConstraint object.
      */
-    public static func constrainToEqualWidths(firstView: UIView,
+    public static func constrainToEqualWidths(_ firstView: UIView,
                                               secondView: UIView,
                                               multiplier: CGFloat,
                                               constant: CGFloat) -> NSLayoutConstraint {
-        return constraintForEqualAttribute(firstView, secondView: secondView, attribute: .Width, multiplier: multiplier, constant: constant)
+        return constraintForEqualAttribute(firstView, secondView: secondView, attribute: .width, multiplier: multiplier, constant: constant)
     }
     
     /**
@@ -177,14 +177,14 @@ extension NSLayoutConstraint {
      
      - returns: An NSLayoutConstraint object.
      */
-    public static func constraintForEqualAttribute(firstView: UIView,
+    public static func constraintForEqualAttribute(_ firstView: UIView,
                                                    secondView: UIView,
                                                    attribute: NSLayoutAttribute,
                                                    multiplier: CGFloat,
                                                    constant: CGFloat) -> NSLayoutConstraint {
         return NSLayoutConstraint(item: firstView,
                                   attribute: attribute,
-                                  relatedBy: .Equal,
+                                  relatedBy: .equal,
                                   toItem: secondView,
                                   attribute: attribute,
                                   multiplier: multiplier,

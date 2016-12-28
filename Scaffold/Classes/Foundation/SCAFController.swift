@@ -9,10 +9,10 @@
 import Foundation
 
 public enum SCAFControllerStatus: Int {
-    case Offline
-    case Initializing
-    case Repairing
-    case Online
+    case offline
+    case initializing
+    case repairing
+    case online
 }
 
 public protocol SCAFController {
@@ -27,29 +27,29 @@ public protocol SCAFController {
     
 }
 
-public class SCAFControllerNode: NSObject, SCAFController {
+open class SCAFControllerNode: NSObject, SCAFController {
     
-    public var name: String {
+    open var name: String {
         get {
             return self.className
         }
     }
     
-    public var status: SCAFControllerStatus = .Offline
+    open var status: SCAFControllerStatus = .offline
     
-    public func start() throws {
-        self.status = .Online
+    open func start() throws {
+        self.status = .online
     }
     
-    public func stop() throws {
-        self.status = .Offline
+    open func stop() throws {
+        self.status = .offline
     }
     
 }
 
-public class SCAFControllerCascade: SCAFControllerNode {
+open class SCAFControllerCascade: SCAFControllerNode {
     
-    public var controllers: [SCAFController] = []
+    open var controllers: [SCAFController] = []
     
     
     public init(controllers: [SCAFController] = []) {
@@ -57,15 +57,15 @@ public class SCAFControllerCascade: SCAFControllerNode {
         self.controllers = controllers
     }
     
-    public override func start() throws {
-        self.status = .Initializing
+    open override func start() throws {
+        self.status = .initializing
         for controller in self.controllers {
             try controller.start()
         }
-        self.status = .Online
+        self.status = .online
     }
     
-    public override func stop() throws {
+    open override func stop() throws {
         for controller in self.controllers {
             try controller.stop()
         }

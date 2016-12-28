@@ -11,7 +11,7 @@ import Scaffold
 
 private class TestApplicationController: SCAFApplicationController {
     
-    private override func initialViewController() -> UIViewController? {
+    fileprivate override func initialViewController() -> UIViewController? {
         return UIViewController(nibName: nil, bundle: nil)
     }
     
@@ -23,7 +23,7 @@ class ApplicationControllerTestCase: XCTestCase {
         
         let controller = SCAFApplicationController()
         
-        XCTAssertFalse(controller.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil),
+        XCTAssertFalse(controller.application(UIApplication.shared, didFinishLaunchingWithOptions: nil),
                        "ApplicationController didFinishLaunchingWithOptions should return false by default")
     }
     

@@ -9,15 +9,15 @@
 import Foundation
 
 public enum SCAFHTTPMethod {
-    case GET
-    case POST
-    case PUT
-    case PATCH
-    case DELETE
+    case get
+    case post
+    case put
+    case patch
+    case delete
 }
 
 public enum SCAFHTTPEncoding {
-    case URL
-    case URLEncoded
-    case JSON
+    case url
+    case urlEncoded
+    case json
 }

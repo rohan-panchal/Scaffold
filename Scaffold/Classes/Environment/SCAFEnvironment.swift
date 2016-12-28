@@ -17,18 +17,18 @@ import Foundation
  - Production:  For Production builds.
  */
 public enum SCAFEnvironmentType {
-    case Test
-    case Development
-    case Staging
-    case Production
+    case test
+    case development
+    case staging
+    case production
 }
 
 /// Manages a Singleton Environment
-public class SCAFEnvironmentManager {
+open class SCAFEnvironmentManager {
     
-    public static let sharedManager: SCAFEnvironmentManager = SCAFEnvironmentManager()
+    open static let sharedManager: SCAFEnvironmentManager = SCAFEnvironmentManager()
     
-    public var environment: SCAFEnvironmentType {
+    open var environment: SCAFEnvironmentType {
         get {
             return self.internalEnvironment
         }
@@ -40,11 +40,11 @@ public class SCAFEnvironmentManager {
      
      - parameter environment: An EnvironmentType value.
      */
-    public class func initializeEnvironment(environment: SCAFEnvironmentType = .Development) {
+    open class func initializeEnvironment(_ environment: SCAFEnvironmentType = .development) {
         sharedManager.internalEnvironment = environment
     }
     
-    init(environment: SCAFEnvironmentType = .Development) {
+    init(environment: SCAFEnvironmentType = .development) {
         self.internalEnvironment = environment
     }
     
