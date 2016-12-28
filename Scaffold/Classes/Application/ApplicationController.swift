@@ -1,5 +1,5 @@
 //
-//  SCAFApplicationController.swift
+//  ApplicationController.swift
 //  Scaffold
 //
 //  Created by Panchal, Rohan on 9/2/16.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-enum SCAFApplicationError: Error {
+enum ApplicationError: Error {
     case invalidInitialViewController
     case invalidLaunchURL
 }
 
 // MARK: - Application Controller
 
-open class SCAFApplicationController: UIResponder {
+open class ApplicationController: UIResponder {
     
     open var window: UIWindow?
     
@@ -29,7 +29,7 @@ open class SCAFApplicationController: UIResponder {
 
 // MARK: - Application Delegate
 
-extension SCAFApplicationController: UIApplicationDelegate {
+extension ApplicationController: UIApplicationDelegate {
     
     public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
@@ -61,7 +61,7 @@ extension SCAFApplicationController: UIApplicationDelegate {
 
 // MARK: - Context Callbacks
 
-extension SCAFApplicationController {
+extension ApplicationController {
     
     /**
      Callback method which gets called when the application is running on an iOS Simulator.
@@ -79,7 +79,7 @@ extension SCAFApplicationController {
 
 // MARK: - Window Setup Options
 
-extension SCAFApplicationController {
+extension ApplicationController {
     
     /**
      Sets up the application UIWindow.
@@ -92,7 +92,7 @@ extension SCAFApplicationController {
         }
         
         guard let initialViewController = self.initialViewController() else {
-            throw SCAFApplicationError.invalidInitialViewController
+            throw ApplicationError.invalidInitialViewController
         }
         
         self.window?.rootViewController = initialViewController
@@ -102,7 +102,7 @@ extension SCAFApplicationController {
 
 // MARK: - Launch Options
 
-extension SCAFApplicationController {
+extension ApplicationController {
     
     /**
      Processes the launch option arguments provided on launch of the application.
