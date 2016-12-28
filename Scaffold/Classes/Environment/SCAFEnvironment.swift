@@ -11,10 +11,10 @@ import Foundation
 /**
  A value denoting specific environments.
  
- - Test:        For Test Targets.
- - Development: For Development environment, simulator, default.
- - Staging:     For Production-like Staging environments.
- - Production:  For Production builds.
+ - test:        For Test Targets.
+ - development: For Development environment, simulator, default.
+ - staging:     For Production-like Staging environments.
+ - production:  For Production builds.
  */
 public enum SCAFEnvironmentType {
     case test
