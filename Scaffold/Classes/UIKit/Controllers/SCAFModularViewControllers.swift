@@ -170,7 +170,7 @@ extension SCAFModularViewController {
 
 extension SCAFModularViewController {
     
-    public func cellIdentifiers() -> [String:AnyClass] {
+    open func cellIdentifiers() -> [String:AnyClass] {
         return [:]
     }
     
