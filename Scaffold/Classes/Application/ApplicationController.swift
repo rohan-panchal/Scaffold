@@ -31,7 +31,7 @@ open class ApplicationController: UIResponder {
 
 extension ApplicationController: UIApplicationDelegate {
     
-    public func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    open func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         do {
             try self.setupWindow()
@@ -66,13 +66,13 @@ extension ApplicationController {
     /**
      Callback method which gets called when the application is running on an iOS Simulator.
      */
-    public func applicationWillLaunchInSimulator() {
+    open func applicationWillLaunchInSimulator() {
     }
     
     /**
     Callback method which gets called when the application is running on an iOS Device.
      */
-    public func applicationWillLaunchOnDevice() {
+    open func applicationWillLaunchOnDevice() {
     }
     
 }
