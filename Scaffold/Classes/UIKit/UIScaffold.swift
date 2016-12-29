@@ -28,7 +28,7 @@ public protocol UIScaffold {
 
 extension UIScaffold {
     
-    public func notificationNames() -> [String] {
+    open func notificationNames() -> [String] {
         return []
     }
     

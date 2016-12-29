@@ -155,11 +155,11 @@ open class SCAFModularViewController: SCAFViewController {
 
 extension SCAFModularViewController {
     
-    public func detectsLongPress() -> Bool {
+    open func detectsLongPress() -> Bool {
         return false
     }
     
-    public func longPressMinimumTimeInterval() -> CFTimeInterval {
+    open func longPressMinimumTimeInterval() -> CFTimeInterval {
         return 0.5
     }
     
@@ -294,7 +294,7 @@ extension SCAFCollectionViewController {
         }
     }
     
-    public func didLongPressOnCell(_ cell: UICollectionViewCell?, atIndexPath indexPath: IndexPath?) {
+    open func didLongPressOnCell(_ cell: UICollectionViewCell?, atIndexPath indexPath: IndexPath?) {
         
     }
     

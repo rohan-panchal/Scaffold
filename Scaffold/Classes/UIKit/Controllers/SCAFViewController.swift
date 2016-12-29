@@ -61,27 +61,27 @@ extension SCAFViewController: UIScaffold {
         self.navigationItem.hidesBackButton = self.hideNavigationBackButton
     }
     
-    public func initialSubviews() -> [UIView] {
+    open func initialSubviews() -> [UIView] {
         return []
     }
     
-    public func setupConstraints(_ rootView: UIView) {
+    open func setupConstraints(_ rootView: UIView) {
     }
     
-    public func setupActions() {
+    open func setupActions() {
     }
     
-    public func setupColorScheme() {
+    open func setupColorScheme() {
     }
     
-    public func setLocalizedCopy() {
+    open func setLocalizedCopy() {
     }
     
-    public func notificationNames() -> [String] {
+    open func notificationNames() -> [String] {
         return []
     }
     
-    @objc public func notificationHandler(_ notification: Notification) {
+    @objc open func notificationHandler(_ notification: Notification) {
     }
     
 }
