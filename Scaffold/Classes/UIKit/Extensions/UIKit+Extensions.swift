@@ -8,7 +8,7 @@
 
 import UIKit
 
-let controlStates: [UIControlState] = [.highlighted, .disabled, .selected, .application, .reserved]
+let controlStates: [UIControlState] = [.normal, .highlighted, .disabled, .selected, .application, .reserved]
 
 extension UIView {
     
