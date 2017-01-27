@@ -116,7 +116,7 @@ extension SCAFProgressNavigationController {
     }
     
     public func progressAnimationBlock(_ resetOnCompletion: Bool = true,
-                                       work: ((_ updateProgress: ((_ progress: Float) -> Void), _ reset: (() -> Void)) -> Void),
+                                       work: ((_ updateProgress: @escaping ((_ progress: Float) -> Void), _ reset: (() -> Void)) -> Void),
                                        completion: @escaping (() -> Void)) {
         
         self.updatingProgress = true
