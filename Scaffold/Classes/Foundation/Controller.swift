@@ -66,23 +66,23 @@ open class ControllerNode: NSObject, Controller {
  */
 open class ControllerCascade: ControllerNode {
     
-    open var controllers: [Controller] = []
+    open var controllers: [String: Controller] = [:]
     
-    public init(controllers: [Controller] = []) {
+    public init(controllers: [String: Controller] = [:]) {
         super.init()
         self.controllers = controllers
     }
     
     open override func start() throws {
         self.status = .initializing
-        for controller in self.controllers {
+        for controller in self.controllers.values {
             try controller.start()
         }
         self.status = .online
     }
     
     open override func stop() throws {
-        for controller in self.controllers {
+        for controller in self.controllers.values {
             try controller.stop()
         }
     }
