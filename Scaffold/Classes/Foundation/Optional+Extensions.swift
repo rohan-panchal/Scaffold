@@ -21,6 +21,9 @@ extension Optional {
         }
     }
     
+    /**
+     An appropriate string value from the wrapped value or nil.
+     */
     public var orNil : String {
         if self == nil {
             return "nil"
