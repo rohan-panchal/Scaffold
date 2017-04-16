@@ -111,9 +111,9 @@ open class SCAFModularViewController: SCAFViewController {
     override open func setupConstraints(_ rootView: UIView) {
         super.setupConstraints(rootView)
         
-        let views = ["_centerView": self.centerView,
-                     "_topView": self.topView,
-                     "_bottomView": self.bottomView]
+        let views: [String: Any] = ["_centerView": self.centerView,
+                                    "_topView": self.topView,
+                                    "_bottomView": self.bottomView]
         
         self.centerView.translatesAutoresizingMaskIntoConstraints = false
         
