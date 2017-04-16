@@ -38,8 +38,8 @@ extension ApplicationController: UIApplicationDelegate {
             
             self.window?.makeKeyAndVisible()
         } catch let error as NSError {
-            if let failureReaseon = error.localizedFailureReason {
-                NSLog("Window setup error:\(failureReaseon)")
+            if let failureReason = error.localizedFailureReason {
+                NSLog("Window setup error:\(failureReason)")
             } else {
                 NSLog("Window setup error")
             }
