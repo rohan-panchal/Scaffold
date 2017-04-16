@@ -10,11 +10,11 @@ import UIKit
 
 open class SCAFTableViewCell: UITableViewCell {
     
-    open static func defaultReuseIdentifer() -> String {
+    open class func defaultReuseIdentifer() -> String {
         return self.className
     }
     
-    open static func defaultHeight() -> CGFloat {
+    open class func defaultHeight() -> CGFloat {
         return 44
     }
     
