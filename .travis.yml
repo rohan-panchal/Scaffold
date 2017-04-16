@@ -2,8 +2,9 @@ osx_image: xcode8.3
 language: objective-c
 cache: cocoapods
 podfile: Example/Podfile
-xcode_workspace: Example/Scaffold.xcworkspace
-xcode_scheme: Scaffold-Example
 before_install:
     - gem install cocoapods # Since Travis is not always on latest version
     - pod install --project-directory=Example
+
+script:
+    - xcodebuild -workspace Example/Scaffold.xcworkspace -scheme Scaffold-Example -configuration Debug ONLY_ACTIVE_ARCH=NO build | xcpretty;
