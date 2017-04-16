@@ -21,7 +21,7 @@ extension Optional {
         }
     }
     
-    var orNil : String {
+    public var orNil : String {
         if self == nil {
             return "nil"
         }
