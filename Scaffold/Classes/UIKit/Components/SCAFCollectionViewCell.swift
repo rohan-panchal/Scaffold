@@ -10,11 +10,11 @@ import UIKit
 
 open class SCAFCollectionViewCell: UICollectionViewCell {
     
-    open class func defaultReuseIdentifer() -> String {
+    open static func defaultReuseIdentifer() -> String {
         return self.className
     }
     
-    open class func defaultHeight() -> CGFloat {
+    open static func defaultHeight() -> CGFloat {
         return 44
     }
     
