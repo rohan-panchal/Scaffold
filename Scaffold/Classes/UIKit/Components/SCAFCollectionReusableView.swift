@@ -14,7 +14,7 @@ open class SCAFCollectionReusableView: UICollectionReusableView {
         return self.className
     }
     
-    open static func defaultHeight() -> CGFloat {
+    open class func defaultHeight() -> CGFloat {
         return 44
     }
     
