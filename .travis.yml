@@ -2,8 +2,8 @@ osx_image: xcode8.3
 language: objective-c
 cache: cocoapods
 podfile: Example/Podfile
+xcode_workspace: Scaffold.xcworkspace
+xcode_scheme: Scaffold-Example
 before_install:
     - gem install cocoapods # Since Travis is not always on latest version
     - pod install --project-directory=Example
-script:
-    — xcodebuild clean build -workspace Scaffold.xcworkspace -scheme Scaffold-Example -destination “platform=iOS Simulator,name=iPhone 6S”
