@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioToolbox
 
 open class SCAFModularViewController: SCAFViewController {
     
@@ -164,6 +165,11 @@ extension SCAFModularViewController {
     }
     
     @objc fileprivate func longPressDetected(_ gestureRecognizer: UILongPressGestureRecognizer) {
+        AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+    }
+    
+    open func shouldVibrateOnLongPress() -> Bool {
+        return false
     }
     
 }
