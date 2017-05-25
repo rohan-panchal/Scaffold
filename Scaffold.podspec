@@ -86,6 +86,8 @@ Pod::Spec.new do |scaffold|
             controllers.dependency 'Scaffold/UIKit/Scaffold'
             controllers.dependency 'Scaffold/UIKit/Extensions'
             
+            controllers.frameworks = 'AudioToolbox'
+            
             controllers.source_files = 'Scaffold/Classes/UIKit/Controllers/*.{swift}'
         end
         
