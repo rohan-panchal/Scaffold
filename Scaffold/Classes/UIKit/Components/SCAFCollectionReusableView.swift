@@ -59,5 +59,8 @@ extension SCAFCollectionReusableView: UIScaffold {
     @objc open func notificationHandler(_ notification: Notification) {
     }
     
+    public func notificationNames() -> [String] {
+        return []
+    }
     
 }

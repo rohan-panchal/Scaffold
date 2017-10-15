@@ -16,7 +16,7 @@ extension NSError {
                             localizedFailureReason: String? = nil,
                             localizedRecoverySuggestion: String? = nil,
                             localizedRecoveryOptions: [String]? = nil) -> NSError {
-        var userInfoDict: [AnyHashable: Any] = [:]
+        var userInfoDict: [String: Any] = [:]
         
         if let localizedDescription = localizedDescription {
             userInfoDict[NSLocalizedDescriptionKey] = localizedDescription
