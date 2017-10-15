@@ -12,7 +12,7 @@ public protocol UIScaffold {
     
     func initialSubviews() -> [UIView]
     
-    func setupConstraints(rootView: UIView)
+    func setupConstraints(_ rootView: UIView)
     
     func setupActions()
     
@@ -22,7 +22,7 @@ public protocol UIScaffold {
     
     func notificationNames() -> [String]
     
-    func notificationHandler(notification: NSNotification)
+    func notificationHandler(_ notification: Notification)
     
 }
 

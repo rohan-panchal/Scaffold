@@ -53,7 +53,7 @@ Pod::Spec.new do |scaffold|
         networking.subspec 'Alamofire' do |alamofire|
             alamofire.dependency 'Scaffold/Networking/Controller'
             
-            alamofire.dependency 'Alamofire', '3.4.1'
+            alamofire.dependency 'Alamofire', '4.4.0'
             
             alamofire.source_files = 'Scaffold/Classes/Networking/Alamofire/*.{swift}'
         end
@@ -85,6 +85,8 @@ Pod::Spec.new do |scaffold|
         uikit.subspec 'Controllers' do |controllers|
             controllers.dependency 'Scaffold/UIKit/Scaffold'
             controllers.dependency 'Scaffold/UIKit/Extensions'
+            
+            controllers.frameworks = 'AudioToolbox'
             
             controllers.source_files = 'Scaffold/Classes/UIKit/Controllers/*.{swift}'
         end

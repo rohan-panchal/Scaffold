@@ -10,13 +10,13 @@ import Foundation
 
 extension NSError {
     
-    public class func error(domain: String,
+    public class func error(_ domain: String,
                             code: Int,
                             localizedDescription: String? = nil,
                             localizedFailureReason: String? = nil,
                             localizedRecoverySuggestion: String? = nil,
                             localizedRecoveryOptions: [String]? = nil) -> NSError {
-        var userInfoDict: [NSObject: AnyObject] = [:]
+        var userInfoDict: [AnyHashable: Any] = [:]
         
         if let localizedDescription = localizedDescription {
             userInfoDict[NSLocalizedDescriptionKey] = localizedDescription
@@ -42,25 +42,25 @@ extension NSError {
 
 // MARK: - NSErrorBuilder
 
-public class NSErrorBuilder {
+open class NSErrorBuilder {
     
-    private var domain: String?
-    private var code: Int?
+    fileprivate var domain: String?
+    fileprivate var code: Int?
     
-    private var localizedDescription: String?
-    private var localizedFailureReason: String?
-    private var localizedRecoverySuggestion: String?
-    private var localizedRecoveryOptions: [String]?
+    fileprivate var localizedDescription: String?
+    fileprivate var localizedFailureReason: String?
+    fileprivate var localizedRecoverySuggestion: String?
+    fileprivate var localizedRecoveryOptions: [String]?
     
     public init() {
     }
 
     /**
-     Generates an NSErrorBuilder object.
+     Generates an NSError object.
      
-     - returns: An NSErrorBuilder object.
+     @return An NSError object.
      */
-    public func error() -> NSError? {
+    open func error() -> NSError? {
         
         guard let domain = self.domain else {
             NSLog("Invalid Error Domain")
@@ -83,32 +83,50 @@ public class NSErrorBuilder {
 
 extension NSErrorBuilder {
     
-    public func setDomain(domain: String) -> NSErrorBuilder {
+    /**
+     Sets the domain string of the error.
+     */
+    public func setDomain(_ domain: String) -> NSErrorBuilder {
         self.domain = domain
         return self
     }
     
-    public func setCode(code: Int) -> NSErrorBuilder {
+    /**
+     Sets the code number of the error.
+     */
+    public func setCode(_ code: Int) -> NSErrorBuilder {
         self.code = code
         return self
     }
     
-    public func setLocalizedDescription(localizedDescription: String) -> NSErrorBuilder {
+    /**
+     Sets the localized description string of the error.
+     */
+    public func setLocalizedDescription(_ localizedDescription: String) -> NSErrorBuilder {
         self.localizedDescription = localizedDescription
         return self
     }
     
-    public func setLocalizedFailureReason(localizedFailureReason: String) -> NSErrorBuilder {
+    /**
+     Sets the localized failure reason string of the error.
+     */
+    public func setLocalizedFailureReason(_ localizedFailureReason: String) -> NSErrorBuilder {
         self.localizedFailureReason = localizedFailureReason
         return self
     }
     
-    public func setLocalizedRecoverySuggestion(localizedRecoverySuggestion: String) -> NSErrorBuilder {
+    /**
+     Sets the localized recovery suggestion string of the error.
+     */
+    public func setLocalizedRecoverySuggestion(_ localizedRecoverySuggestion: String) -> NSErrorBuilder {
         self.localizedRecoverySuggestion = localizedRecoverySuggestion
         return self
     }
     
-    public func setLocalizedRecoveryOptions(localizedRecoveryOptions: [String]) -> NSErrorBuilder {
+    /**
+     Sets the localized recovery options string array of the error.
+     */
+    public func setLocalizedRecoveryOptions(_ localizedRecoveryOptions: [String]) -> NSErrorBuilder {
         self.localizedRecoveryOptions = localizedRecoveryOptions
         return self
     }

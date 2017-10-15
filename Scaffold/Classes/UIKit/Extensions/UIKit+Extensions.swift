@@ -8,11 +8,11 @@
 
 import UIKit
 
-let controlStates: [UIControlState] = [.Normal, .Highlighted, .Disabled, .Selected, .Application, .Reserved]
+let controlStates: [UIControlState] = [.normal, .highlighted, .disabled, .selected, .application, .reserved]
 
 extension UIView {
     
-    public func addSubviews(views: [UIView]) {
+    public func addSubviews(_ views: [UIView]) {
         for view in views {
             self.addSubview(view)
         }
@@ -49,19 +49,19 @@ extension UIView {
 
 extension UIView {
     
-    public class func view(frame: CGRect = CGRectZero,
+    public class func view(_ frame: CGRect = CGRect.zero,
                            translatesAutoresizingMaskIntoConstraints: Bool = false,
-                           tintColor: UIColor = UIColor.blackColor()) -> Self {
+                           tintColor: UIColor = UIColor.black) -> Self {
         return viewGenerator(self,
                              frame: frame,
                              translatesAutoresizingMaskIntoConstraints: translatesAutoresizingMaskIntoConstraints,
                              tintColor: tintColor)
     }
     
-    private class func viewGenerator<T: UIView>(type: T.Type,
-                                     frame: CGRect = CGRectZero,
+    fileprivate class func viewGenerator<T: UIView>(_ type: T.Type,
+                                     frame: CGRect = CGRect.zero,
                                      translatesAutoresizingMaskIntoConstraints: Bool = false,
-                                     tintColor: UIColor = UIColor.blackColor()) -> T {
+                                     tintColor: UIColor = UIColor.black) -> T {
         let view = T(frame: frame)
         view.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
         view.tintColor = tintColor
@@ -79,7 +79,7 @@ extension UIView {
      
      - parameter view: A UIView that any constraint associated with should be removed.
      */
-    public func removeConstraintsWithView(view: UIView) {
+    public func removeConstraintsWithView(_ view: UIView) {
         for constraint in self.constraints {
             if constraint.firstItem as! NSObject == view || constraint.secondItem as! NSObject == view {
                 self.removeConstraint(constraint)
@@ -99,13 +99,13 @@ extension UIView {
      - parameter changes:    A closure containing the attribute changes to be called during the animation.
      - parameter completion: A closure called upon completion of the animation, with a Bool as a parameter.
      */
-    public func animateConstraintChanges(duration: NSTimeInterval = 0.25,
-                                         delay: NSTimeInterval = 0.0,
-                                         options: UIViewAnimationOptions = [.CurveEaseInOut],
-                                         changes: (() -> Void),
+    public func animateConstraintChanges(_ duration: TimeInterval = 0.25,
+                                         delay: TimeInterval = 0.0,
+                                         options: UIViewAnimationOptions = UIViewAnimationOptions(),
+                                         changes: @escaping (() -> Void),
                                          completion: ((Bool) -> Void)?) {
         self.layoutIfNeeded()
-        UIView.animateWithDuration(duration,
+        UIView.animate(withDuration: duration,
                                    delay: delay,
                                    options: options,
                                    animations: { [weak self] in
@@ -118,12 +118,12 @@ extension UIView {
 
 extension UIButton {
     
-    public class func button(frame: CGRect = CGRectZero,
+    public class func button(_ frame: CGRect = CGRect.zero,
                              translatesAutoresizingMaskIntoConstraints: Bool = false,
-                             buttonType: UIButtonType = .System,
+                             buttonType: UIButtonType = .system,
                              title: String = "",
-                             titleColor: UIColor = UIColor.blackColor(),
-                             font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())) -> Self {
+                             titleColor: UIColor = UIColor.black,
+                             font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)) -> Self {
         return buttonGenerator(self,
                                frame: frame,
                                translatesAutoresizingMaskIntoConstraints: translatesAutoresizingMaskIntoConstraints,
@@ -133,19 +133,19 @@ extension UIButton {
                                font: font)
     }
     
-    private class func buttonGenerator<T: UIButton>(type: T.Type, frame: CGRect = CGRectZero,
+    fileprivate class func buttonGenerator<T: UIButton>(_ type: T.Type, frame: CGRect = CGRect.zero,
                                        translatesAutoresizingMaskIntoConstraints: Bool = false,
-                                       buttonType: UIButtonType = .System,
+                                       buttonType: UIButtonType = .system,
                                        title: String = "",
-                                       titleColor: UIColor = UIColor.blackColor(),
-                                       font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())) -> T {
+                                       titleColor: UIColor = UIColor.black,
+                                       font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize)) -> T {
         let button = T(type: buttonType)
         button.frame = frame
         button.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
         
         for controlState in controlStates {
-            button.setTitle(title, forState: controlState)
-            button.setTitleColor(titleColor, forState: controlState)
+            button.setTitle(title, for: controlState)
+            button.setTitleColor(titleColor, for: controlState)
         }
         
         button.titleLabel?.font = font
@@ -157,7 +157,7 @@ extension UIButton {
 
 extension UIImageView {
     
-    public class func imageView(frame: CGRect = CGRectZero,
+    public class func imageView(_ frame: CGRect = CGRect.zero,
                                 translatesAutoresizingMaskIntoConstraints: Bool = false,
                                 image: UIImage? = nil) -> Self {
         return imageViewGenerator(self,
@@ -166,8 +166,8 @@ extension UIImageView {
                                   image: image)
     }
     
-    private class func imageViewGenerator<T: UIImageView>(type: T.Type,
-                                          frame: CGRect = CGRectZero,
+    fileprivate class func imageViewGenerator<T: UIImageView>(_ type: T.Type,
+                                          frame: CGRect = CGRect.zero,
                                           translatesAutoresizingMaskIntoConstraints: Bool = false,
                                           image: UIImage? = nil) -> T {
         let imageView = UIImageView(frame: frame)
@@ -181,13 +181,13 @@ extension UIImageView {
 
 extension UILabel {
     
-    public class func label(frame: CGRect = CGRectZero,
+    public class func label(_ frame: CGRect = CGRect.zero,
                             translatesAutoresizingMaskIntoConstraints: Bool = false,
-                            tintColor: UIColor = UIColor.blackColor(),
+                            tintColor: UIColor = UIColor.black,
                             text: String = "",
-                            textColor: UIColor = UIColor.blackColor(),
-                            textAlignment: NSTextAlignment = .Left,
-                            font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize()),
+                            textColor: UIColor = UIColor.black,
+                            textAlignment: NSTextAlignment = .left,
+                            font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize),
                             numberOfLines: Int = 1) -> Self {
         return labelGenerator(self,
                               frame: frame,
@@ -200,14 +200,14 @@ extension UILabel {
                               numberOfLines: numberOfLines)
     }
     
-    private class func labelGenerator<T: UILabel>(type: T.Type,
-                                      frame: CGRect = CGRectZero,
+    fileprivate class func labelGenerator<T: UILabel>(_ type: T.Type,
+                                      frame: CGRect = CGRect.zero,
                                       translatesAutoresizingMaskIntoConstraints: Bool = false,
-                                      tintColor: UIColor = UIColor.blackColor(),
+                                      tintColor: UIColor = UIColor.black,
                                       text: String = "",
-                                      textColor: UIColor = UIColor.blackColor(),
-                                      textAlignment: NSTextAlignment = .Left,
-                                      font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize()),
+                                      textColor: UIColor = UIColor.black,
+                                      textAlignment: NSTextAlignment = .left,
+                                      font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize),
                                       numberOfLines: Int = 1) -> T {
         let label = T(frame: frame)
         label.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
@@ -227,14 +227,14 @@ extension UILabel {
 
 extension UITextField {
     
-    public class func textField(frame: CGRect = CGRectZero,
+    public class func textField(_ frame: CGRect = CGRect.zero,
                                 translatesAutoresizingMaskIntoConstraints: Bool = false,
-                                tintColor: UIColor = UIColor.blackColor(),
+                                tintColor: UIColor = UIColor.black,
                                 text: String = "",
                                 placeholder: String = "",
-                                font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize()),
-                                borderStyle: UITextBorderStyle = .RoundedRect,
-                                textColor: UIColor = UIColor.blackColor(),
+                                font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize),
+                                borderStyle: UITextBorderStyle = .roundedRect,
+                                textColor: UIColor = UIColor.black,
                                 secureTextEntry: Bool = false) -> Self {
         return textFieldGenerator(self,
                                   frame: frame,
@@ -249,15 +249,15 @@ extension UITextField {
 
     }
     
-    private class func textFieldGenerator<T: UITextField>(type: T.Type,
-                                          frame: CGRect = CGRectZero,
+    fileprivate class func textFieldGenerator<T: UITextField>(_ type: T.Type,
+                                          frame: CGRect = CGRect.zero,
                                           translatesAutoresizingMaskIntoConstraints: Bool = false,
-                                          tintColor: UIColor = UIColor.blackColor(),
+                                          tintColor: UIColor = UIColor.black,
                                           text: String = "",
                                           placeholder: String = "",
-                                          font: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize()),
-                                          borderStyle: UITextBorderStyle = .RoundedRect,
-                                          textColor: UIColor = UIColor.blackColor(),
+                                          font: UIFont = UIFont.systemFont(ofSize: UIFont.systemFontSize),
+                                          borderStyle: UITextBorderStyle = .roundedRect,
+                                          textColor: UIColor = UIColor.black,
                                           secureTextEntry: Bool = false) -> T {
         let textField = T(frame: frame)
         textField.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
@@ -268,7 +268,7 @@ extension UITextField {
         textField.font = font
         textField.borderStyle = borderStyle
         textField.textColor = textColor
-        textField.secureTextEntry = secureTextEntry
+        textField.isSecureTextEntry = secureTextEntry
         
         return textField 
     }

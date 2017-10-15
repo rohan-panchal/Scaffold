@@ -10,16 +10,40 @@ import Foundation
 
 extension Optional {
     
-    func doIfNonNil(value: Wrapped?, handler: ((value: Wrapped) -> Void)) {
+    /**
+     A handler that executes if the wrapped value is non-nil.
+     
+     @param value: The wrapped value.
+     */
+    func doIfNonNil(_ value: Wrapped?, handler: ((_ value: Wrapped) -> Void)) {
         if let value = self {
-            handler(value: value)
+            handler(value)
         }
+    }
+    
+    /**
+     An appropriate string value from the wrapped value or nil.
+     */
+    public var orNil : String {
+        if self == nil {
+            return "nil"
+        }
+        if "\(Wrapped.self)" == "String" {
+            return "\"\(self!)\""
+        }
+        return "\(self!)"
     }
     
 }
 
-public func doIfNonNil<T>(value: T?, handler: ((value: T) -> Void)) {
+/**
+ Executes a handler if the provided wrapped value is non-nil.
+ 
+ @param value: A wrapped value.
+ @param handler: A closure to execute with the provided value if it is non-nil.
+ */
+public func doIfNonNil<T>(_ value: T?, handler: ((_ value: T) -> Void)) {
     if let value = value {
-        handler(value: value)
+        handler(value)
     }
 }
