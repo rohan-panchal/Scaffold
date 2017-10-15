@@ -8,13 +8,13 @@
 
 import UIKit
 
-public class SCAFTableViewCell: UITableViewCell {
+open class SCAFTableViewCell: UITableViewCell {
     
-    public class func defaultReuseIdentifer() -> String {
+    open class func defaultReuseIdentifer() -> String {
         return self.className
     }
     
-    public class func defaultHeight() -> CGFloat {
+    open class func defaultHeight() -> CGFloat {
         return 44
     }
     
@@ -32,7 +32,7 @@ public class SCAFTableViewCell: UITableViewCell {
 
 extension SCAFTableViewCell: UIScaffold {
     
-    private func setup() {
+    fileprivate func setup() {
         self.contentView.addSubviews(self.initialSubviews())
         self.setupConstraints(self.contentView)
         self.setupActions()
@@ -40,23 +40,27 @@ extension SCAFTableViewCell: UIScaffold {
         self.setLocalizedCopy()
     }
     
-    public func initialSubviews() -> [UIView] {
+    open func initialSubviews() -> [UIView] {
         return []
     }
     
-    public func setupConstraints(rootView: UIView) {
+    open func setupConstraints(_ rootView: UIView) {
     }
     
-    public func setupActions() {
+    open func setupActions() {
     }
     
-    public func setupColorScheme() {
+    open func setupColorScheme() {
     }
     
-    public func setLocalizedCopy() {
+    open func setLocalizedCopy() {
     }
     
-    @objc public func notificationHandler(notification: NSNotification) {
+    @objc open func notificationHandler(_ notification: Notification) {
+    }
+    
+    public func notificationNames() -> [String] {
+        return []
     }
     
 }

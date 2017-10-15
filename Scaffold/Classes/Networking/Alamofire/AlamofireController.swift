@@ -1,5 +1,5 @@
 //
-//  SCAFAlamofireController.swift
+//  AlamofireController.swift
 //  Scaffold
 //
 //  Created by Panchal, Rohan on 9/6/16.
@@ -10,28 +10,28 @@ import Alamofire
 
 extension NetworkReachabilityManager.NetworkReachabilityStatus {
     
-    public func scafReachabilityStatus() -> SCAFNetworkControllerReachabilityStatus {
+    public func scafReachabilityStatus() -> NetworkControllerReachabilityStatus {
         switch self {
-        case .Unknown:
-            return SCAFNetworkControllerReachabilityStatus.Unknown
-        case .NotReachable:
-            return SCAFNetworkControllerReachabilityStatus.Unreachable
-        case .Reachable:
-            return SCAFNetworkControllerReachabilityStatus.Reachable
+        case .unknown:
+            return NetworkControllerReachabilityStatus.unknown
+        case .notReachable:
+            return NetworkControllerReachabilityStatus.unreachable
+        case .reachable:
+            return NetworkControllerReachabilityStatus.reachable
         }
     }
     
 }
 
-public class SCAFAlamofireController: SCAFNetworkControllerNode {
+open class AlamofireController: NetworkControllerNode {
     
-    public lazy var manager: Manager = {
-        let manager = Manager()
+    open lazy var manager: SessionManager = {
+        let manager = SessionManager()
         manager.startRequestsImmediately = true
         return manager
     }()
     
-    public lazy var reachabilityManager: NetworkReachabilityManager? = {
+    open lazy var reachabilityManager: NetworkReachabilityManager? = {
         if let reachabilityHost = self.reachabilityHost,
             let manager = NetworkReachabilityManager(host: reachabilityHost) {
             return manager
@@ -39,18 +39,18 @@ public class SCAFAlamofireController: SCAFNetworkControllerNode {
         return nil
     }()
     
-    override public var reachabilityStatus: SCAFNetworkControllerReachabilityStatus {
+    override open var reachabilityStatus: NetworkControllerReachabilityStatus {
         if let reachability =  self.reachabilityManager?.networkReachabilityStatus {
             return reachability.scafReachabilityStatus()
         }
-        return .Unknown
+        return .unknown
     }
     
     public required init(host: String, reachabilityHost: String?) {
         super.init(host: host, reachabilityHost: reachabilityHost)
     }
     
-    public override func start() throws {
+    open override func start() throws {
         do {
             self.reachabilityManager?.startListening()
             try super.start()
@@ -59,7 +59,7 @@ public class SCAFAlamofireController: SCAFNetworkControllerNode {
         }
     }
     
-    public override func stop() throws {
+    open override func stop() throws {
         do {
             self.reachabilityManager?.stopListening()
             try super.stop()

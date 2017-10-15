@@ -8,11 +8,11 @@
 
 import UIKit
 
-public protocol UIScaffold {
+@objc public protocol UIScaffold {
     
     func initialSubviews() -> [UIView]
     
-    func setupConstraints(rootView: UIView)
+    func setupConstraints(_ rootView: UIView)
     
     func setupActions()
     
@@ -22,14 +22,6 @@ public protocol UIScaffold {
     
     func notificationNames() -> [String]
     
-    func notificationHandler(notification: NSNotification)
-    
-}
-
-extension UIScaffold {
-    
-    public func notificationNames() -> [String] {
-        return []
-    }
+    func notificationHandler(_ notification: Notification)
     
 }

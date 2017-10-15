@@ -9,9 +9,9 @@
 import XCTest
 import Scaffold
 
-private class TestApplicationController: SCAFApplicationController {
+private class TestApplicationController: ApplicationController {
     
-    private override func initialViewController() -> UIViewController? {
+    fileprivate override func initialViewController() -> UIViewController? {
         return UIViewController(nibName: nil, bundle: nil)
     }
     
@@ -21,9 +21,9 @@ class ApplicationControllerTestCase: XCTestCase {
 
     func testApplicationControllerLaunchingNoInitialViewController() {
         
-        let controller = SCAFApplicationController()
+        let controller = ApplicationController()
         
-        XCTAssertFalse(controller.application(UIApplication.sharedApplication(), didFinishLaunchingWithOptions: nil),
+        XCTAssertFalse(controller.application(UIApplication.shared, didFinishLaunchingWithOptions: nil),
                        "ApplicationController didFinishLaunchingWithOptions should return false by default")
     }
     

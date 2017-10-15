@@ -10,27 +10,27 @@ import UIKit
 
 extension UIAlertController {
     
-    public class func actionSheetController(title: String?,
+    public class func actionSheetController(_ title: String?,
                                       message: String?,
                                       actions: [UIAlertAction]? = []) -> UIAlertController {
         return alertControllerGenerator(title,
                                         message: message,
-                                        preferredStyle: .ActionSheet,
+                                        preferredStyle: .actionSheet,
                                         actions: actions)
     }
     
-    public class func alertController(title: String?,
+    public class func alertController(_ title: String?,
                                 message: String?,
                                 actions: [UIAlertAction]? = []) -> UIAlertController {
         return alertControllerGenerator(title,
                                         message: message,
-                                        preferredStyle: .Alert,
+                                        preferredStyle: .alert,
                                         actions: actions)
     }
     
-    public class func alertControllerGenerator(title: String?,
+    public class func alertControllerGenerator(_ title: String?,
                                 message: String?,
-                                preferredStyle: UIAlertControllerStyle = .Alert,
+                                preferredStyle: UIAlertControllerStyle = .alert,
                                 actions: [UIAlertAction]? = []) -> UIAlertController {
         let controller = UIAlertController(title: title, message: message, preferredStyle: preferredStyle)
         

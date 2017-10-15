@@ -8,37 +8,37 @@
 
 import UIKit
 
-public class SCAFViewController: UIViewController {
+open class SCAFViewController: UIViewController {
     
-    public var hidesNavigationBar: Bool {
+    open var hidesNavigationBar: Bool {
         return false
     }
     
-    public var hideNavigationBackButton: Bool {
+    open var hideNavigationBackButton: Bool {
         return false
     }
     
-    public var progressNavigationController: SCAFProgressNavigationController? {
+    open var progressNavigationController: SCAFProgressNavigationController? {
         guard let navigationController = self.navigationController as? SCAFProgressNavigationController else {
             return nil
         }
         return navigationController
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
 
 extension SCAFViewController: UIScaffold {
     
-    private func setup() {
+    fileprivate func setup() {
         self.view.addSubviews(self.initialSubviews())
         self.setupConstraints(self.view)
         self.setupActions()
@@ -50,38 +50,38 @@ extension SCAFViewController: UIScaffold {
         self.setupNotificationObservers()
     }
     
-    private func setupNotificationObservers() {
+    fileprivate func setupNotificationObservers() {
         for notificationName in self.notificationNames() {
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(notificationHandler), name: notificationName, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(notificationHandler), name: NSNotification.Name(rawValue: notificationName), object: nil)
         }
     }
     
-    private func setupControllerCustomization() {
+    fileprivate func setupControllerCustomization() {
         self.navigationController?.setNavigationBarHidden(self.hidesNavigationBar, animated: true)
         self.navigationItem.hidesBackButton = self.hideNavigationBackButton
     }
     
-    public func initialSubviews() -> [UIView] {
+    open func initialSubviews() -> [UIView] {
         return []
     }
     
-    public func setupConstraints(rootView: UIView) {
+    open func setupConstraints(_ rootView: UIView) {
     }
     
-    public func setupActions() {
+    open func setupActions() {
     }
     
-    public func setupColorScheme() {
+    open func setupColorScheme() {
     }
     
-    public func setLocalizedCopy() {
+    open func setLocalizedCopy() {
     }
     
-    public func notificationNames() -> [String] {
+    open func notificationNames() -> [String] {
         return []
     }
     
-    @objc public func notificationHandler(notification: NSNotification) {
+    @objc open func notificationHandler(_ notification: Notification) {
     }
     
 }

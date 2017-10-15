@@ -8,9 +8,9 @@
 
 import UIKit
 
-public class SCAFNavigationController: UINavigationController {
+open class SCAFNavigationController: UINavigationController {
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         if let initialViewControllers = self.initialViewControllers() {
@@ -18,25 +18,25 @@ public class SCAFNavigationController: UINavigationController {
         }
     }
     
-    public func initialViewControllers() -> [UIViewController]? {
+    open func initialViewControllers() -> [UIViewController]? {
         return []
     }
     
 }
 
-public class SCAFProgressNavigationController: SCAFNavigationController {
+open class SCAFProgressNavigationController: SCAFNavigationController {
     
-    public lazy var progressView: UIProgressView = UIProgressView(progressViewStyle: .Bar)
+    open lazy var progressView: UIProgressView = UIProgressView(progressViewStyle: .bar)
     
-    public var isUpdatingProgress: Bool {
+    open var isUpdatingProgress: Bool {
         get {
             return self.updatingProgress
         }
     }
     
-    private var updatingProgress: Bool = false
+    fileprivate var updatingProgress: Bool = false
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         
         self.addProgressView()
@@ -54,52 +54,52 @@ extension SCAFProgressNavigationController {
 
 extension SCAFProgressNavigationController {
     
-    private func addProgressView() {
+    fileprivate func addProgressView() {
         self.view.addSubview(self.progressView)
         
         let navBar = self.navigationBar
         
         self.view.addConstraint(
             NSLayoutConstraint(item: self.progressView,
-                attribute: .Bottom,
-                relatedBy: .Equal,
+                attribute: .bottom,
+                relatedBy: .equal,
                 toItem: navBar,
-                attribute: .Bottom,
+                attribute: .bottom,
                 multiplier: 1,
                 constant: -0.5))
         
         self.view.addConstraint(
             NSLayoutConstraint(item: self.progressView,
-                attribute: .Left,
-                relatedBy: .Equal,
+                attribute: .left,
+                relatedBy: .equal,
                 toItem: navBar,
-                attribute: .Left,
+                attribute: .left,
                 multiplier: 1,
                 constant: -0.5))
         
         self.view.addConstraint(
             NSLayoutConstraint(item: self.progressView,
-                attribute: .Right,
-                relatedBy: .Equal,
+                attribute: .right,
+                relatedBy: .equal,
                 toItem: navBar,
-                attribute: .Right,
+                attribute: .right,
                 multiplier: 1,
                 constant: -0.5))
         
         self.progressView.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    public func setProgress(progress: Float, animated: Bool = true, completion: (() -> Void)? = nil) {
-        dispatch_async(dispatch_get_main_queue()) {
+    public func setProgress(_ progress: Float, animated: Bool = true, completion: (() -> Void)? = nil) {
+        DispatchQueue.main.async {
             
             let progressDifference = abs(progress - self.progressView.progress)
-            let newDuration = NSTimeInterval(progressDifference * 1.0)
+            let newDuration = TimeInterval(progressDifference * 1.0)
             
             self.progressView.progress = progress
             if animated {
-                UIView.animateWithDuration(newDuration,
+                UIView.animate(withDuration: newDuration,
                                            delay: 0.0,
-                                           options: UIViewAnimationOptions.CurveEaseInOut,
+                                           options: UIViewAnimationOptions(),
                                            animations: {
                                             self.progressView.layoutIfNeeded()
                     },
@@ -110,26 +110,26 @@ extension SCAFProgressNavigationController {
         }
     }
     
-    public func resetProgress(animated: Bool = false) {
+    public func resetProgress(_ animated: Bool = false) {
         self.setProgress(0.0, animated: animated)
         self.updatingProgress = false
     }
     
-    public func progressAnimationBlock(resetOnCompletion: Bool = true,
-                                       work: ((updateProgress: ((progress: Float) -> Void), reset: (() -> Void)) -> Void),
-                                       completion: (() -> Void)) {
+    public func progressAnimationBlock(_ resetOnCompletion: Bool = true,
+                                       work: ((_ updateProgress: @escaping ((_ progress: Float) -> Void), _ reset: @escaping (() -> Void)) -> Void),
+                                       completion: @escaping (() -> Void)) {
         
         self.updatingProgress = true
         
-        work(updateProgress: { (progress) in
+        work({ (progress) in
             
             if self.isUpdatingProgress {
                 self.setProgress(progress, animated: true, completion: {
                     if progress == 1.0 {
                         
                         //Adds a delay after progress bar is filled to call completion().
-                        let delayTime = dispatch_time(DISPATCH_TIME_NOW, Int64(0.25 * Double(NSEC_PER_SEC)))
-                        dispatch_after(delayTime, dispatch_get_main_queue(), {
+                        let delayTime = DispatchTime.now() + Double(Int64(0.25 * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC)
+                        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
                             completion()
                             if resetOnCompletion {
                                 self.resetProgress()
@@ -149,22 +149,22 @@ extension SCAFProgressNavigationController {
 
 extension SCAFProgressNavigationController {
     
-    public override func popViewControllerAnimated(animated: Bool) -> UIViewController? {
+    open override func popViewController(animated: Bool) -> UIViewController? {
         self.resetProgress()
-        return super.popViewControllerAnimated(animated)
+        return super.popViewController(animated: animated)
     }
     
-    public override func popToRootViewControllerAnimated(animated: Bool) -> [UIViewController]? {
+    open override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         self.resetProgress()
-        return super.popToRootViewControllerAnimated(animated)
+        return super.popToRootViewController(animated: animated)
     }
     
-    public override func popToViewController(viewController: UIViewController, animated: Bool) -> [UIViewController]? {
+    open override func popToViewController(_ viewController: UIViewController, animated: Bool) -> [UIViewController]? {
         self.resetProgress()
         return super.popToViewController(viewController, animated: animated)
     }
     
-    public override func pushViewController(viewController: UIViewController, animated: Bool) {
+    open override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         self.resetProgress()
         super.pushViewController(viewController, animated: animated)
     }

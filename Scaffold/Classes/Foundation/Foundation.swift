@@ -1,5 +1,5 @@
 //
-//  SCAFFoundation.swift
+//  Foundation.swift
 //  Pods
 //
 //  Created by Rohan Panchal on 9/26/16.
@@ -11,11 +11,11 @@ import Foundation
 public struct Platform {
     
     public static var iPhone: Bool {
-        return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Phone
+        return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.phone
     }
     
     public static var iPad: Bool {
-        return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.Pad
+        return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiom.pad
     }
     
     public static var iOS: Bool {
