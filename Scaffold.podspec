@@ -53,7 +53,7 @@ Pod::Spec.new do |scaffold|
         networking.subspec 'Alamofire' do |alamofire|
             alamofire.dependency 'Scaffold/Networking/Controller'
             
-            alamofire.dependency 'Alamofire', '4.5.1'
+            alamofire.dependency 'Alamofire', '4.4.0'
             
             alamofire.source_files = 'Scaffold/Classes/Networking/Alamofire/*.{swift}'
         end
