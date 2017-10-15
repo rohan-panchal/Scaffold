@@ -22,7 +22,7 @@ Pod::Spec.new do |scaffold|
     scaffold.author           = { 'Rohan Panchal' => 'engineering@rohanpanchal.com' }
     scaffold.source           = { :git => 'https://github.com/rohan-panchal/Scaffold.git', :tag => scaffold.version.to_s }
     
-    scaffold.ios.deployment_target = '8.0'
+    scaffold.ios.deployment_target = '10.0'
     
     #    scaffold.default_subspec = 'Foundation'
     
